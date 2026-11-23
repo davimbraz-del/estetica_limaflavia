@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-23T13:30:00Z",
+  "title": "Design System: Flávia Lima · Estética e Massoterapia",
+  "extensions": {
+    "colorMeta": {
+      "roxo": { "role": "primary", "displayName": "Orchid Ink" },
+      "roxo-escuro": { "role": "primary", "displayName": "Deep Orchid" },
+      "roxo-claro": { "role": "primary", "displayName": "Soft Orchid", "note": "Brand #8E6CC4 darkened for AA" },
+      "lilas": { "role": "secondary", "displayName": "Lilac Mist" },
+      "lilas-2": { "role": "secondary", "displayName": "Lilac Veil" },
+      "lavanda": { "role": "secondary", "displayName": "Lavender Line" },
+      "cha": { "role": "tertiary", "displayName": "Rose Tea" },
+      "branco": { "role": "neutral", "displayName": "White" },
+      "nuvem": { "role": "neutral", "displayName": "Cloud" },
+      "tinta": { "role": "neutral", "displayName": "Plum Ink" },
+      "tinta-2": { "role": "neutral", "displayName": "Soft Plum" }
+    },
+    "typographyMeta": {
+      "signature": { "displayName": "Signature", "purpose": "Only the name Flávia Lima." },
+      "display": { "displayName": "Display", "purpose": "The single hero headline." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs, 62ch max, 18px for a 60+ audience." }
+    },
+    "shadows": [
+      { "name": "float", "value": "0 18px 40px -18px rgba(94,64,150,.28), 0 4px 12px -6px rgba(94,64,150,.14)", "purpose": "Hero care card, arch, slider, pricing card." },
+      { "name": "rest", "value": "0 10px 26px -14px rgba(94,64,150,.26)", "purpose": "List cards, menu groups, objection cards." },
+      { "name": "press", "value": "0 14px 28px -14px rgba(90,59,143,.7)", "purpose": "Primary buttons." }
+    ],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(.16,1,.3,1)", "purpose": "All state transitions and reveals." },
+      { "name": "reveal", "value": "opacity/translateY(18px)/blur(4px) over 1s", "purpose": "Scroll reveal, disabled under prefers-reduced-motion." },
+      { "name": "sprig-draw", "value": "stroke-dashoffset over 2.6s", "purpose": "One-time hero sprig drawing." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "560px" }, { "name": "md", "value": "900px" }, { "name": "lg", "value": "980px" }
+    ]
+  },
+  "components": [
+    { "name": "Primary Button", "kind": "button", "refersTo": "button-primary", "description": "WhatsApp action pill.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Enviar para a Flávia</a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;min-height:56px;padding:.9rem 1.75rem;border-radius:999px;background:#6E4BA8;color:#fff;font:800 1.0625rem Nunito,system-ui,sans-serif;text-decoration:none;box-shadow:0 14px 28px -14px rgba(90,59,143,.7);transition:transform .5s cubic-bezier(.16,1,.3,1),background-color .3s}.ds-btn:hover{background:#5A3B8F;transform:translateY(-2px)}.ds-btn:focus-visible{outline:3px solid #6E4BA8;outline-offset:3px}" },
+    { "name": "Chip", "kind": "chip", "refersTo": "chip", "description": "Multi-select care chip.",
+      "html": "<label class=\"ds-chip\"><input type=\"checkbox\" checked><span>Dor ou tensão</span></label>",
+      "css": ".ds-chip input{position:absolute;opacity:0}.ds-chip span{display:inline-flex;align-items:center;min-height:46px;padding:.55rem 1rem;border-radius:999px;background:#FBF8FD;border:1.5px solid #D9C6F0;font:600 1rem Nunito,sans-serif;color:#3D3550}.ds-chip input:checked+span{background:#E9DDF7;border-color:#805EBA;color:#5A3B8F}" },
+    { "name": "Care Card", "kind": "card", "refersTo": "card", "description": "White 44px card on pastel ground.",
+      "html": "<div class=\"ds-card\"><h3>Conte para a Flávia</h3><p>Marque o que você sente.</p></div>",
+      "css": ".ds-card{background:#fff;border-radius:44px;padding:2rem 1.6rem;border:1px solid #E9DDF7;box-shadow:0 18px 40px -18px rgba(94,64,150,.28),0 4px 12px -6px rgba(94,64,150,.14);font-family:Nunito,sans-serif;color:#3D3550}.ds-card h3{font:400 1.6rem 'Gilda Display',serif;margin:0 0 .3rem}" }
+  ],
+  "narrative": {
+    "northStar": "The Care Card",
+    "keyCharacteristics": ["Pastel lilac and rose-tea fields alternate with white, joined by soft waves.", "Fine-line lavender botanicals are the only icon family.", "Pills and large rounded cards; the organic arch frames portraits.", "Diffuse, lilac-tinted, offset shadows; never hard.", "Script only on the name Flávia Lima."],
+    "rules": [
+      { "name": "The Pastel Field Rule", "section": "colors", "body": "Colour arrives as whole-section fields of Lilac Mist, Cloud or Rose Tea, never as scattered accents on a grey template." },
+      { "name": "The One Ink Rule", "section": "colors", "body": "Orchid Ink is for actions and short emphasis only, never large surfaces or long text." },
+      { "name": "The No Red Rule", "section": "colors", "body": "No red, no alarm hues, anywhere." },
+      { "name": "The Name-Only Script Rule", "section": "typography", "body": "The script face is reserved for \"Flávia Lima\". Headings never use it." },
+      { "name": "The No Kicker Rule", "section": "typography", "body": "No eyebrow labels above headings. The serif heading speaks alone." }
+    ]
+  }
+}
