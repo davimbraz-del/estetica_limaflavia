@@ -182,18 +182,43 @@ p{margin:0 0 1rem;text-wrap:pretty}
   .hero{padding-top:.5rem}
   .hero-grid{grid-template-columns:1fr minmax(0,560px);gap:2.5rem;padding:1.5rem 0 4rem}
   .hero-ramo{display:none}
-  .retrato{display:block;justify-self:end;width:100%;padding:5.5rem 0 0 0}
-  .retrato .arco{position:absolute;right:0;top:0;width:min(62%,330px);aspect-ratio:auto;height:430px}
-  .retrato .ramo-arco{left:auto;right:min(52%,290px);bottom:auto;top:30px;width:110px}
-  .retrato .bilhete{position:relative;margin-right:min(30%,170px);padding:1.75rem 1.75rem 1.5rem}
-  .retrato .bilhete .chips{gap:.45rem}
-  .retrato .bilhete fieldset{margin-bottom:.95rem}
-  .hero-texto{padding-bottom:2rem}
+  .hero-grid{grid-template-columns:1fr minmax(0,440px)}
+  .retrato{display:block;justify-self:end;width:min(100%,420px)}
+  .retrato .ramo-arco{left:-60px;bottom:50px;width:130px}
+  .hero-texto{padding-bottom:1rem}
   .hero-fatos{display:flex;flex-wrap:wrap}
   .so-mobile{display:none}
 }
 
-/* Retrato no celular, após o bilhete */
+.hero-cta{margin-top:1.75rem}
+.hero-cta .micro{margin-top:.75rem}
+
+/* Sobre a Flávia */
+#sobre{overflow:hidden}
+.sobre{display:grid;gap:2.5rem;align-items:center}
+.sobre-foto{position:relative;width:min(100%,380px);justify-self:center}
+.sobre-foto .arco{aspect-ratio:4/5}
+.sobre-foto .ramo-sobre{position:absolute;right:-34px;top:24px;width:110px;transform:scaleX(-1);z-index:2}
+.sobre-texto p{color:var(--tinta-2)}
+.sobre-texto p.abre{font-family:var(--serif);font-size:clamp(1.35rem,1.15rem + .8vw,1.7rem);line-height:1.35;color:var(--tinta)}
+.sobre-nota{display:block;border:1.5px dashed var(--lavanda);border-radius:20px;padding:.85rem 1rem;font-size:.95rem;color:var(--tinta-2);background:var(--nuvem);margin:0 0 1.25rem}
+.sobre-fatos{list-style:none;padding:0;margin:1.5rem 0;display:grid;gap:.75rem}
+.sobre-fatos li{display:grid;grid-template-columns:30px 1fr;gap:.75rem;align-items:center;font-weight:700;color:var(--tinta)}
+.sobre-fatos svg{width:30px;height:30px}
+.sobre-fatos svg .ramo{stroke:var(--roxo-claro);stroke-width:1.6}
+.sobre-assina{font-family:var(--script);font-size:2.6rem;line-height:1;color:var(--roxo);margin:.5rem 0 1rem}
+.sobre-insta{font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;min-height:44px}
+.sobre-insta svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media (min-width:900px){.sobre{grid-template-columns:.85fr 1.15fr;gap:5rem}}
+
+/* Fechamento com o bilhete */
+.final-grid{display:grid;gap:2.5rem;align-items:center;text-align:left}
+.final-grid h2{margin-inline:0}
+.final-grid .medida{margin:0 0 1rem}
+.final-grid .ps{margin:1.5rem 0 0}
+@media (min-width:980px){.final-grid{grid-template-columns:1fr minmax(0,500px);gap:4rem}}
+
+/* Retrato no celular */
 .retrato-mobile{display:grid;grid-template-columns:110px 1fr;gap:1rem;align-items:center;margin-top:1.75rem}
 .retrato-mobile .arco{aspect-ratio:3/4;box-shadow:var(--sombra-leve)}
 .retrato-mobile p{font-size:1rem;color:var(--tinta-2);margin:0}
@@ -363,7 +388,7 @@ section{position:relative}
 .faq .resp p:last-child{margin:0}
 
 /* CTA final */
-.final{text-align:center;position:relative;overflow:hidden}
+.final{position:relative;overflow:hidden}
 .final h2{font-size:clamp(2.2rem,1.5rem + 3vw,3.6rem);max-width:18ch;margin-inline:auto}
 .final .medida{margin:0 auto 2rem;color:var(--tinta-2)}
 .final .micro{justify-content:center}
@@ -431,6 +456,7 @@ section{position:relative}
       <span class="txt"><span class="nome">Flávia Lima</span><span class="ofic">Estética &amp; Massoterapia</span></span>
     </a>
     <nav aria-label="Principal">
+      <a href="#sobre">Sobre</a>
       <a href="#cuidados">Cuidados</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#duvidas">Dúvidas</a>
@@ -460,6 +486,10 @@ section{position:relative}
       <span class="assinatura" aria-hidden="true">Flávia Lima</span>
       <h1 id="titulo-hero">Trate sua dor, <em>sem dor.</em></h1>
       <p class="sub">Estética facial, massoterapia e drenagem com a Flávia Lima, em Recife. Com hora marcada, no espaço ou na sua casa.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primario js-wa" data-cta="hero" href="https://api.whatsapp.com/send?phone=5581994951191&amp;text=Ol%C3%A1%2C%20Fl%C3%A1via!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whats"/></svg>Agendar pelo WhatsApp</a>
+        <p class="micro"><span>Hora marcada</span><span>No espaço ou em domicílio</span><span>Sem compromisso</span></p>
+      </div>
       <ul class="hero-fatos" aria-label="Diferenciais">
         <li><svg aria-hidden="true"><use href="#i-calendario"/></svg>Hora marcada</li>
         <li><svg aria-hidden="true"><use href="#i-casa"/></svg>Atendimento em domicílio</li>
@@ -467,11 +497,9 @@ section{position:relative}
       </ul>
 
       <div class="so-mobile" style="margin-top:2rem">
-        <!-- bilhete inserido aqui no celular via template abaixo -->
-        <div data-slot="bilhete-mobile"></div>
         <div class="retrato-mobile">
           <div class="arco"><img src="img/flavia-placeholder.svg" width="400" height="533" alt="Espaço reservado para a foto da Flávia Lima de jaleco branco" loading="lazy" decoding="async"><span class="marcador">foto em breve</span></div>
-          <p><strong>Flávia Lima</strong>, esteticista e massoterapeuta. Uma só profissional para cuidar da sua pele e do seu corpo.</p>
+          <p><strong>Flávia Lima</strong>, esteticista e massoterapeuta. Uma só profissional para cuidar da sua pele e do seu corpo. <a href="#sobre">Conheça a Flávia</a></p>
         </div>
       </div>
     </div>
@@ -479,42 +507,9 @@ section{position:relative}
     <div class="retrato">
       <div class="arco"><img src="img/flavia-placeholder.svg" width="400" height="533" alt="Espaço reservado para a foto da Flávia Lima de jaleco branco" fetchpriority="high" decoding="async"><span class="marcador">foto em breve</span></div>
       <svg class="ramo-arco" viewBox="0 0 140 200" aria-hidden="true"><g class="ramo"><path d="M120 196C100 140 80 90 30 20"/><path d="M98 140c-22 2-40-10-48-30 22-2 40 10 48 30Z"/><path d="M78 100c18-10 40-6 52 8-18 10-40 6-52-8Z"/><path d="M58 66c-20-2-34-16-38-34 20 2 34 16 38 34Z"/><circle cx="30" cy="18" r="5"/></g></svg>
-      <div data-slot="bilhete-desktop"></div>
     </div>
   </div>
 
-  <!-- Bilhete: o compositor de mensagem (um só, movido pelo JS conforme a largura) -->
-  <form class="bilhete" id="bilhete" aria-labelledby="titulo-bilhete" action="https://api.whatsapp.com/send" method="get" target="_blank">
-    <h2 id="titulo-bilhete">Conte para a Flávia</h2>
-    <p class="instr">Marque o que você sente. A mensagem já sai escrita.</p>
-    <fieldset>
-      <legend>Hoje eu quero cuidar de…</legend>
-      <div class="chips">
-        <label class="chip"><input type="checkbox" name="cuidar" value="dor ou tensão no corpo"><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>Dor ou tensão</span></label>
-        <label class="chip"><input type="checkbox" name="cuidar" value="a minha pele"><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>Minha pele</span></label>
-        <label class="chip"><input type="checkbox" name="cuidar" value="pernas pesadas e inchaço"><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>Inchaço</span></label>
-        <label class="chip"><input type="checkbox" name="cuidar" value="relaxar"><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>Relaxar</span></label>
-        <label class="chip"><input type="checkbox" name="cuidar" value="ainda não sei, quero uma orientação"><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>Ainda não sei</span></label>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend>Onde você prefere ser cuidada?</legend>
-      <div class="local">
-        <label><input type="radio" name="local" value="espaco" checked><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>No espaço</span></label>
-        <label><input type="radio" name="local" value="casa"><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>Na minha casa</span></label>
-      </div>
-    </fieldset>
-    <div class="balao" aria-live="polite">
-      <small>Sua mensagem</small>
-      <p id="previa">Olá, Flávia! Vim pelo site e gostaria de agendar um horário.</p>
-    </div>
-    <input type="hidden" name="phone" value="5581994951191">
-    <input type="hidden" name="text" id="texto-wa" value="Olá, Flávia! Vim pelo site e gostaria de agendar um horário.">
-    <a class="btn btn-primario js-wa" id="enviar" data-cta="hero" href="https://api.whatsapp.com/send?phone=5581994951191&amp;text=Ol%C3%A1%2C%20Fl%C3%A1via!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">
-      <svg aria-hidden="true"><use href="#i-whats"/></svg>Enviar para a Flávia
-    </a>
-    <p class="micro"><span>Hora marcada</span><span>No espaço ou em domicílio</span><span>Sem compromisso</span></p>
-  </form>
 
   <svg class="onda onda-lilas colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60C180 20 360 10 560 38s420 52 620 22c110-16 190-36 260-30V90H0Z"/></svg>
 </section>
@@ -546,6 +541,31 @@ section{position:relative}
   </div>
 </section>
 <svg class="onda onda-lilas colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="transform:scaleY(-1)"><path d="M0 50c240 40 480 40 720 10S1200 0 1440 40V90H0Z"/></svg>
+
+<!-- Sobre a Flávia -->
+<section class="secao" id="sobre" aria-labelledby="titulo-sobre">
+  <div class="wrap sobre">
+    <div class="sobre-foto rv">
+      <div class="arco"><img src="img/flavia-placeholder.svg" width="400" height="533" alt="Espaço reservado para uma foto da Flávia Lima atendendo" loading="lazy" decoding="async"><span class="marcador">foto em breve</span></div>
+      <svg class="ramo-sobre" viewBox="0 0 140 200" aria-hidden="true"><g class="ramo"><path d="M120 196C100 140 80 90 30 20"/><path d="M98 140c-22 2-40-10-48-30 22-2 40 10 48 30Z"/><path d="M78 100c18-10 40-6 52 8-18 10-40 6-52-8Z"/><path d="M58 66c-20-2-34-16-38-34 20 2 34 16 38 34Z"/><circle cx="30" cy="18" r="5"/></g></svg>
+    </div>
+    <div class="sobre-texto">
+      <h2 id="titulo-sobre" class="rv">Prazer, eu sou a Flávia</h2>
+      <p class="abre rv">Sou esteticista e massoterapeuta, e atendo em Recife com hora marcada: no espaço Viver Bem ou na sua casa.</p>
+      <p class="rv">Para mim, massagem não é luxo. É saúde, é amor-próprio, é autocuidado. Por isso cada atendimento começa escutando você e segue no seu ritmo. Trate sua dor, sem dor.</p>
+      <!-- [INSERIR] história da Flávia: como começou, formação, há quanto tempo atende -->
+      <p class="sobre-nota rv">Espaço reservado para um pouco da história da Flávia: como começou, formação e há quanto tempo atende.</p>
+      <ul class="sobre-fatos rv">
+        <li><svg aria-hidden="true"><use href="#i-mao"/></svg>Esteticista e massoterapeuta</li>
+        <li><svg aria-hidden="true"><use href="#i-folha"/></svg>Congressista na Imersão Estética Erro Zero</li>
+        <li><svg aria-hidden="true"><use href="#i-casa"/></svg>Atende no espaço Viver Bem e em domicílio</li>
+      </ul>
+      <p class="sobre-assina rv" aria-hidden="true">Flávia Lima</p>
+      <a class="sobre-insta rv" href="https://www.instagram.com/estetica_limaflavia/" target="_blank" rel="noopener">Veja meu trabalho no Instagram<svg aria-hidden="true"><use href="#i-seta"/></svg></a>
+    </div>
+  </div>
+</section>
+<svg class="onda onda-nuvem colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50c240 40 480 40 720 10S1200 0 1440 40V90H0Z"/></svg>
 
 <!-- 6: Solução -->
 <section class="secao" id="como-funciona" aria-labelledby="titulo-solucao">
@@ -766,14 +786,43 @@ section{position:relative}
 <section class="secao fundo-nuvem final" aria-labelledby="titulo-final" style="padding-top:2rem">
   <svg class="ramo-final rf-e" viewBox="0 0 200 200" aria-hidden="true"><g class="ramo"><path d="M10 190C60 140 110 80 190 20"/><path d="M60 140c-24 0-42-14-48-36 24 0 42 14 48 36ZM100 100c4-24 22-40 46-42-4 24-22 40-46 42ZM140 62c-20-6-32-22-32-42 20 6 32 22 32 42Z"/></g></svg>
   <svg class="ramo-final rf-d" viewBox="0 0 200 200" aria-hidden="true"><g class="ramo"><path d="M10 190C60 140 110 80 190 20"/><path d="M60 140c-24 0-42-14-48-36 24 0 42 14 48 36ZM100 100c4-24 22-40 46-42-4 24-22 40-46 42ZM140 62c-20-6-32-22-32-42 20 6 32 22 32 42Z"/></g></svg>
-  <div class="wrap">
+  <div class="wrap final-grid">
+    <div>
     <h2 id="titulo-final" class="rv">Imagine terminar a semana leve e cuidada</h2>
     <p class="medida rv">Com o corpo leve, a pele cuidada e a sensação de que finalmente alguém cuidou de você. Esse momento começa com uma mensagem: conte para a Flávia o que você está sentindo, e ela te responde com carinho.</p>
-    <div class="rv">
-      <a class="btn btn-primario js-wa" data-cta="final" href="#"><svg aria-hidden="true"><use href="#i-whats"/></svg>Falar com a Flávia agora</a>
-      <p class="micro"><span>Avaliação inicial pelo WhatsApp</span><span>Sem compromisso</span></p>
-    </div>
     <p class="ps rv"><strong>PS:</strong> Você não precisa escolher entre cuidar da pele, do corpo ou da sua agenda. Com a Flávia, é tudo com a mesma profissional, no seu horário, no espaço ou na sua casa. E sem dor. A agenda é com hora marcada: chama no WhatsApp e garanta o seu. 💜</p>
+    </div>
+  <form class="bilhete" id="bilhete" aria-labelledby="titulo-bilhete" action="https://api.whatsapp.com/send" method="get" target="_blank">
+    <h2 id="titulo-bilhete">Conte para a Flávia</h2>
+    <p class="instr">Marque o que você sente. A mensagem já sai escrita.</p>
+    <fieldset>
+      <legend>Hoje eu quero cuidar de…</legend>
+      <div class="chips">
+        <label class="chip"><input type="checkbox" name="cuidar" value="dor ou tensão no corpo"><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>Dor ou tensão</span></label>
+        <label class="chip"><input type="checkbox" name="cuidar" value="a minha pele"><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>Minha pele</span></label>
+        <label class="chip"><input type="checkbox" name="cuidar" value="pernas pesadas e inchaço"><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>Inchaço</span></label>
+        <label class="chip"><input type="checkbox" name="cuidar" value="relaxar"><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>Relaxar</span></label>
+        <label class="chip"><input type="checkbox" name="cuidar" value="ainda não sei, quero uma orientação"><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>Ainda não sei</span></label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Onde você prefere ser cuidada?</legend>
+      <div class="local">
+        <label><input type="radio" name="local" value="espaco" checked><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>No espaço</span></label>
+        <label><input type="radio" name="local" value="casa"><span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>Na minha casa</span></label>
+      </div>
+    </fieldset>
+    <div class="balao" aria-live="polite">
+      <small>Sua mensagem</small>
+      <p id="previa">Olá, Flávia! Vim pelo site e gostaria de agendar um horário.</p>
+    </div>
+    <input type="hidden" name="phone" value="5581994951191">
+    <input type="hidden" name="text" id="texto-wa" value="Olá, Flávia! Vim pelo site e gostaria de agendar um horário.">
+    <a class="btn btn-primario js-wa" id="enviar" data-cta="final" href="https://api.whatsapp.com/send?phone=5581994951191&amp;text=Ol%C3%A1%2C%20Fl%C3%A1via!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">
+      <svg aria-hidden="true"><use href="#i-whats"/></svg>Enviar para a Flávia
+    </a>
+    <p class="micro"><span>Hora marcada</span><span>No espaço ou em domicílio</span><span>Sem compromisso</span></p>
+  </form>
   </div>
 </section>
 <svg class="onda onda-lilas colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="background:var(--nuvem)"><path d="M0 60C180 20 360 10 560 38s420 52 620 22c110-16 190-36 260-30V90H0Z"/></svg>
@@ -835,14 +884,7 @@ section{position:relative}
     if (window.gtag) window.gtag('event', 'generate_lead', { origem: origem, servico: servico });
   });
 
-  // Bilhete: um só formulário, posicionado conforme a largura
   var bilhete = document.getElementById('bilhete');
-  var slotM = document.querySelector('[data-slot="bilhete-mobile"]');
-  var slotD = document.querySelector('[data-slot="bilhete-desktop"]');
-  var mq = window.matchMedia('(min-width: 980px)');
-  function posiciona(){ (mq.matches ? slotD : slotM).appendChild(bilhete); }
-  posiciona();
-  if (mq.addEventListener) mq.addEventListener('change', posiciona); else mq.addListener(posiciona);
 
   // Bilhete: compõe a mensagem ao vivo
   var previa = document.getElementById('previa');
