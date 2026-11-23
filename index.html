@@ -22,9 +22,11 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<!--FONTS-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<!--/FONTS-->
 
 <script type="application/ld+json">
 {
@@ -46,16 +48,18 @@
   ]
 }
 </script>
+<!--/HEADMETA-->
 
 <style>
+/* Mesmo mundo visual: branco + lilás pastel, ondas, traço fino. Estrutura: topo → hero → sobre → cuidados → depoimentos → dúvidas → chamada final → contato */
 :root{
   --branco:#FFFFFF;
   --nuvem:#FBF8FD;
   --lilas:#E9DDF7;
   --lilas-2:#D9C6F0;
   --lavanda:#B79CE0;
-  --roxo-claro:#805EBA;   /* #8E6CC4 da marca, escurecido para AA */
-  --roxo:#6E4BA8;         /* botões, links e títulos curtos: 6.5:1 com branco */
+  --roxo-claro:#805EBA;
+  --roxo:#6E4BA8;
   --roxo-escuro:#5A3B8F;
   --cha:#F6E4EC;
   --tinta:#3D3550;
@@ -69,10 +73,13 @@
   --sans:"Nunito", "Segoe UI", system-ui, sans-serif;
   --gutter:clamp(1.25rem, 5vw, 3rem);
   --ease:cubic-bezier(.16,1,.3,1);
+  --topo:72px;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scrollbar-color:var(--lavanda) var(--nuvem)}
-body{margin:0;background:var(--branco);color:var(--tinta);font-family:var(--sans);font-size:1.125rem;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--topo) + 12px);-webkit-text-size-adjust:100%;scrollbar-color:var(--lavanda) var(--nuvem)}
+body{margin:0;background:var(--branco);color:var(--tinta);font-family:var(--sans);font-size:1.125rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+body.menu-aberto{overflow:hidden}
 ::selection{background:var(--lilas-2);color:var(--tinta)}
 ::-webkit-scrollbar{width:12px}
 ::-webkit-scrollbar-track{background:var(--nuvem)}
@@ -82,21 +89,22 @@ a{color:var(--roxo);text-underline-offset:.22em;text-decoration-thickness:1px}
 a:not(.btn):not(.flutuante):hover{color:var(--roxo-escuro)}
 :focus-visible{outline:3px solid var(--roxo);outline-offset:3px;border-radius:12px}
 h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12;color:var(--tinta);margin:0;text-wrap:balance;letter-spacing:-.01em}
-h2{font-size:clamp(2rem,1.4rem + 2.6vw,3.1rem);margin-bottom:1rem}
-h3{font-size:clamp(1.4rem,1.2rem + .8vw,1.75rem)}
+h2{font-size:clamp(2rem,1.4rem + 2.6vw,3.1rem)}
 p{margin:0 0 1rem;text-wrap:pretty}
 .wrap{width:min(100% - 2*var(--gutter), 1160px);margin-inline:auto}
-.medida{max-width:62ch}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .pular{position:absolute;left:1rem;top:-4rem;background:var(--roxo);color:#fff;padding:.75rem 1.25rem;border-radius:999px;z-index:100;text-decoration:none}
 .pular:focus{top:1rem;color:#fff}
+.ramo{fill:none;stroke:var(--lavanda);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 
 /* Botões */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:56px;padding:.9rem 1.75rem;border-radius:999px;font-family:var(--sans);font-weight:800;font-size:1.0625rem;line-height:1.2;text-decoration:none;border:0;cursor:pointer;transition:transform .5s var(--ease), box-shadow .5s var(--ease), background-color .3s}
-.btn-primario{background:var(--roxo);color:#fff;box-shadow:0 14px 28px -14px rgba(90,59,143,.7)}
-.btn-primario:hover{background:var(--roxo-escuro);color:#fff;transform:translateY(-2px);box-shadow:0 18px 34px -14px rgba(90,59,143,.75)}
-.btn-primario:active{transform:translateY(0)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:56px;padding:.9rem 1.75rem;border-radius:999px;font-family:var(--sans);font-weight:800;font-size:1.0625rem;line-height:1.2;text-decoration:none;border:0;cursor:pointer;transition:transform .5s var(--ease), box-shadow .5s var(--ease), background-color .3s, color .3s}
 .btn svg{width:22px;height:22px;flex:none}
+.btn-primario{background:var(--roxo);color:#fff;box-shadow:0 14px 28px -14px rgba(90,59,143,.7)}
+.btn-primario:hover{background:var(--roxo-escuro);color:#fff;transform:translateY(-2px)}
+.btn-contorno{background:transparent;color:var(--roxo-escuro);box-shadow:inset 0 0 0 1.5px var(--lavanda)}
+.btn-contorno:hover{background:var(--lilas);color:var(--roxo-escuro);box-shadow:inset 0 0 0 1.5px var(--roxo-claro)}
+.btn-contorno svg .ico-linha{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .micro{font-size:.95rem;color:var(--tinta-2);margin:.85rem 0 0;display:flex;flex-wrap:wrap;gap:.25rem .9rem}
 .micro span{display:inline-flex;align-items:center;gap:.4rem}
 .micro span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lavanda)}
@@ -104,279 +112,168 @@ p{margin:0 0 1rem;text-wrap:pretty}
 /* Ondas */
 .onda{display:block;width:100%;height:clamp(40px,6vw,90px)}
 .onda path{fill:currentColor}
+.colado{margin-top:-1px;margin-bottom:-1px}
+.onda-lilas{color:var(--lilas)}
+.onda-nuvem{color:var(--nuvem)}
+.onda-cha{color:var(--cha)}
 
-/* Ramos em traço fino */
-.ramo{fill:none;stroke:var(--lavanda);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.ico .ramo, svg.ico{stroke:var(--roxo-claro)}
-
-/* Topo */
-.topo{position:relative;z-index:5;padding:1.1rem 0}
-.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.marca{display:flex;flex-direction:column;line-height:1;text-decoration:none;color:var(--tinta)}
-.marca{flex-direction:row;align-items:center;gap:.6rem}
+/* Cabeçalho */
+.topo{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.86);backdrop-filter:saturate(1.2) blur(10px);-webkit-backdrop-filter:saturate(1.2) blur(10px);transition:box-shadow .4s var(--ease), background-color .4s}
+.topo.rolou{box-shadow:0 10px 30px -22px rgba(94,64,150,.45);background:rgba(255,255,255,.95)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:var(--topo)}
+.marca{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--tinta)}
 .marca svg{width:34px;height:34px;flex:none}
-.marca .txt{display:flex;flex-direction:column}
-.marca .nome{font-family:var(--serif);font-size:1.35rem;color:var(--tinta);line-height:1.1}
+.marca svg .ramo{stroke:var(--roxo-claro);stroke-width:1.6}
+.marca .txt{display:flex;flex-direction:column;line-height:1}
+.marca .nome{font-family:var(--serif);font-size:1.35rem;line-height:1.1}
 .marca .ofic{font-size:.8rem;letter-spacing:.02em;color:var(--tinta-2);margin-top:.2rem}
-.topo nav{display:none}
-.topo nav a{color:var(--tinta);text-decoration:none;font-weight:600;font-size:1rem;padding:.5rem .25rem}
-.topo nav a:hover{color:var(--roxo)}
-.topo .btn{min-height:48px;padding:.6rem 1.15rem;font-size:.98rem}
-@media (min-width:900px){.topo nav{display:flex;gap:1.6rem}}
+.menu-botao{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:50%;border:0;background:var(--lilas);cursor:pointer;color:var(--roxo-escuro)}
+.menu-botao span{display:block;width:20px;height:1.75px;background:currentColor;border-radius:2px;transition:transform .4s var(--ease)}
+.menu-botao span + span{margin-top:-14px}
+.menu-botao span:first-child{transform:translateY(-4px)}
+.menu-botao span:last-child{transform:translateY(4px)}
+.menu-botao[aria-expanded="true"] span:first-child{transform:rotate(45deg)}
+.menu-botao[aria-expanded="true"] span:last-child{transform:rotate(-45deg)}
+.menu{position:fixed;inset:var(--topo) 0 auto 0;background:var(--branco);padding:1.25rem var(--gutter) 2rem;box-shadow:0 30px 40px -30px rgba(94,64,150,.4);border-radius:0 0 var(--raio-g) var(--raio-g);display:flex;flex-direction:column;gap:.25rem;transform:translateY(-12px);opacity:0;visibility:hidden;transition:transform .45s var(--ease), opacity .3s, visibility 0s .45s}
+.menu.aberto{transform:none;opacity:1;visibility:visible;transition:transform .45s var(--ease), opacity .3s}
+.menu a.link{color:var(--tinta);text-decoration:none;font-weight:700;font-size:1.15rem;padding:.8rem .25rem;border-bottom:1px solid var(--lilas)}
+.menu a.link.ativo{color:var(--roxo)}
+.menu .btn{margin-top:1rem}
+@media (min-width:900px){
+  .menu-botao{display:none}
+  .menu{position:static;inset:auto;background:none;padding:0;box-shadow:none;border-radius:0;flex-direction:row;align-items:center;gap:1.6rem;transform:none;opacity:1;visibility:visible;transition:none}
+  .menu a.link{border:0;font-size:1rem;font-weight:600;padding:.5rem .1rem;position:relative}
+  .menu a.link::after{content:"";position:absolute;left:0;right:0;bottom:.15rem;height:2px;border-radius:2px;background:var(--lavanda);transform:scaleX(0);transition:transform .45s var(--ease)}
+  .menu a.link:hover::after,.menu a.link.ativo::after{transform:scaleX(1)}
+  .menu .btn{margin:0 0 0 .5rem;min-height:48px;padding:.6rem 1.2rem;font-size:.98rem}
+}
 
 /* Hero */
-.hero{position:relative;background:linear-gradient(180deg,var(--nuvem) 0%, var(--branco) 100%);padding:1rem 0 0;overflow:hidden}
-.hero-grid{display:grid;gap:2.25rem;align-items:center;padding-bottom:3rem}
-.hero .assinatura{font-family:var(--script);font-size:clamp(2.4rem,1.8rem + 2vw,3.4rem);color:var(--roxo);line-height:1;display:block;margin-bottom:.35rem}
-.hero h1{font-size:clamp(2.75rem,1.9rem + 4.2vw,5.1rem);line-height:1.02;letter-spacing:-.02em}
-.hero h1 em{font-style:normal;color:var(--roxo-claro)}
-.hero .sub{font-size:clamp(1.125rem,1rem + .4vw,1.3rem);color:var(--tinta-2);margin:1.15rem 0 0;max-width:34ch}
-.hero-texto{position:relative;z-index:2}
-.hero-ramo{position:absolute;right:-78px;top:-18px;width:150px;opacity:.8;z-index:0;pointer-events:none}
-
-/* Bilhete (compositor de mensagem) */
-.bilhete{position:relative;z-index:3;background:var(--branco);border-radius:var(--raio-g);box-shadow:var(--sombra);padding:1.5rem 1.25rem 1.4rem;border:1px solid var(--lilas)}
-.bilhete h2{font-size:1.6rem;margin:0 0 .3rem}
-.bilhete .instr{font-size:1rem;color:var(--tinta-2);margin:0 0 1rem}
-.bilhete fieldset{border:0;padding:0;margin:0 0 1.1rem;min-width:0}
-.bilhete legend{font-weight:700;font-size:1rem;margin-bottom:.6rem;padding:0}
-.chips{display:flex;flex-wrap:wrap;gap:.55rem}
-.chip{position:relative}
-.chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
-.chip span{display:inline-flex;align-items:center;gap:.45rem;min-height:46px;padding:.55rem 1rem;border-radius:999px;background:var(--nuvem);border:1.5px solid var(--lilas-2);font-size:1rem;font-weight:600;color:var(--tinta);transition:background-color .3s, border-color .3s, color .3s}
-.chip span svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:0;margin-left:-.3rem;width:0;transition:opacity .3s, width .3s var(--ease), margin .3s}
-.chip input:hover + span{border-color:var(--lavanda)}
-.chip input:checked + span{background:var(--lilas);border-color:var(--roxo-claro);color:var(--roxo-escuro)}
-.chip input:checked + span svg{opacity:1;width:16px;margin-left:0}
-.chip input:focus-visible + span{outline:3px solid var(--roxo);outline-offset:2px}
-.local{display:grid;grid-template-columns:1fr 1fr;background:var(--branco);border:1.5px solid var(--lilas-2);border-radius:999px;padding:4px;position:relative}
-.local label{position:relative;text-align:center;cursor:pointer}
-.local input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
-.local span{display:flex;align-items:center;justify-content:center;min-height:46px;padding:.4rem .5rem;border-radius:999px;font-weight:700;font-size:.98rem;color:var(--tinta-2);transition:background-color .35s var(--ease), color .3s, box-shadow .35s}
-.local span svg{width:0;height:16px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .3s,width .3s var(--ease),margin .3s}
-.local input:checked + span{background:var(--lilas);color:var(--roxo-escuro);box-shadow:inset 0 0 0 2px var(--roxo)}
-.local input:checked + span svg{width:16px;opacity:1;margin-right:.35rem}
-.local input:focus-visible + span{outline:3px solid var(--roxo);outline-offset:1px}
-.balao{position:relative;background:var(--lilas);border-radius:22px 22px 22px 6px;padding:.9rem 1.05rem;margin:0 0 1.15rem;font-size:1rem;line-height:1.5;color:var(--tinta)}
-.balao small{display:block;font-size:.8rem;font-weight:700;color:var(--roxo-escuro);margin-bottom:.25rem}
-.balao p{margin:0}
-.bilhete .btn{width:100%}
-.bilhete .micro{justify-content:center}
-
-/* Retrato (arco) */
-.retrato{position:relative;display:none}
-.arco{position:relative;border-radius:999px 999px var(--raio-g) var(--raio-g);overflow:hidden;aspect-ratio:4/5;background:var(--lilas);box-shadow:var(--sombra)}
+.hero{position:relative;background:linear-gradient(180deg,var(--nuvem) 0%, var(--branco) 100%);overflow:hidden}
+.hero-grid{display:grid;gap:2.5rem;align-items:center;padding:2rem 0 3rem}
+.assinatura{font-family:var(--script);font-size:clamp(2.3rem,1.8rem + 2vw,3.4rem);color:var(--roxo);line-height:1;display:block;margin-bottom:.4rem}
+.hero h1{font-size:clamp(2.75rem,1.9rem + 4.2vw,5.1rem);line-height:1.04;letter-spacing:-.02em}
+.hero h1 .linha{display:block}
+.grifo{position:relative;display:inline-block;color:var(--roxo-claro);white-space:nowrap}
+.grifo svg{position:absolute;left:-2%;right:-2%;bottom:-.12em;width:104%;height:.32em;overflow:visible}
+.grifo path{fill:none;stroke:var(--lavanda);stroke-width:3;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.credenciais{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .7rem;margin:1.4rem 0 0;font-weight:700;font-size:1rem;color:var(--tinta-2)}
+.credenciais .ponto{width:5px;height:5px;border-radius:50%;background:var(--lavanda)}
+.hero .sub{font-size:clamp(1.1rem,1rem + .35vw,1.25rem);color:var(--tinta-2);margin:1rem 0 0;max-width:36ch}
+.hero-acoes{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
+.hero-midia{position:relative;justify-self:center;width:min(100%,400px)}
+.hero-midia .bolha{position:absolute;inset:-8% -14% -6% -12%;z-index:0}
+.hero-midia .bolha path{fill:var(--lilas)}
+.hero-midia .ramo-hero{position:absolute;left:-30px;bottom:30px;width:120px;z-index:2}
+.arco{position:relative;z-index:1;border-radius:999px 999px var(--raio-g) var(--raio-g);overflow:hidden;aspect-ratio:4/5;background:var(--lilas-2);box-shadow:var(--sombra)}
 .arco img{width:100%;height:100%;object-fit:cover}
-.retrato .ramo-arco{position:absolute;left:-46px;bottom:40px;width:140px;z-index:2}
 .arco .marcador{position:absolute;right:.9rem;bottom:.9rem;background:rgba(255,255,255,.92);color:var(--roxo-escuro);font-size:.8rem;font-weight:800;border-radius:999px;padding:.25rem .7rem;line-height:1.3}
-.retrato-mobile .arco .marcador{right:50%;transform:translateX(50%);bottom:.5rem;font-size:.7rem;padding:.15rem .5rem;white-space:nowrap}
-.hero-fatos{display:none;list-style:none;margin:2.5rem 0 0;padding:0;gap:1.75rem}
-.hero-fatos li{display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:1rem;color:var(--tinta)}
-.hero-fatos svg{width:34px;height:34px;flex:none}
-
-@media (min-width:640px){
-  .bilhete{padding:2rem 2rem 1.75rem}
-}
+@media (max-width:979px){.hero-midia{width:min(78%,330px)}}
 @media (min-width:980px){
-  .hero{padding-top:1.5rem}
-  .hero{padding-top:.5rem}
-  .hero-grid{grid-template-columns:1fr minmax(0,560px);gap:2.5rem;padding:1.5rem 0 4rem}
-  .hero-ramo{display:none}
-  .hero-grid{grid-template-columns:1fr minmax(0,440px)}
-  .retrato{display:block;justify-self:end;width:min(100%,420px)}
-  .retrato .ramo-arco{left:-60px;bottom:50px;width:130px}
-  .hero-texto{padding-bottom:1rem}
-  .hero-fatos{display:flex;flex-wrap:wrap}
-  .so-mobile{display:none}
+  .hero-grid{grid-template-columns:1.1fr .9fr;gap:3rem;padding:3.5rem 0 4.5rem}
+  .hero-midia{justify-self:end}
 }
-
-.hero-cta{margin-top:1.75rem}
-.hero-cta .micro{margin-top:.75rem}
-
-/* Sobre a Flávia */
-#sobre{overflow:hidden}
-.sobre{display:grid;gap:2.5rem;align-items:center}
-.sobre-foto{position:relative;width:min(100%,380px);justify-self:center}
-.sobre-foto .arco{aspect-ratio:4/5}
-.sobre-foto .ramo-sobre{position:absolute;right:-34px;top:24px;width:110px;transform:scaleX(-1);z-index:2}
-.sobre-texto p{color:var(--tinta-2)}
-.sobre-texto p.abre{font-family:var(--serif);font-size:clamp(1.35rem,1.15rem + .8vw,1.7rem);line-height:1.35;color:var(--tinta)}
-.sobre-nota{display:block;border:1.5px dashed var(--lavanda);border-radius:20px;padding:.85rem 1rem;font-size:.95rem;color:var(--tinta-2);background:var(--nuvem);margin:0 0 1.25rem}
-.sobre-fatos{list-style:none;padding:0;margin:1.5rem 0;display:grid;gap:.75rem}
-.sobre-fatos li{display:grid;grid-template-columns:30px 1fr;gap:.75rem;align-items:center;font-weight:700;color:var(--tinta)}
-.sobre-fatos svg{width:30px;height:30px}
-.sobre-fatos svg .ramo{stroke:var(--roxo-claro);stroke-width:1.6}
-.sobre-assina{font-family:var(--script);font-size:2.6rem;line-height:1;color:var(--roxo);margin:.5rem 0 1rem}
-.sobre-insta{font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;min-height:44px}
-.sobre-insta svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-@media (min-width:900px){.sobre{grid-template-columns:.85fr 1.15fr;gap:5rem}}
-
-/* Fechamento com o bilhete */
-.final-grid{display:grid;gap:2.5rem;align-items:center;text-align:left}
-.final-grid h2{margin-inline:0}
-.final-grid .medida{margin:0 0 1rem}
-.final-grid .ps{margin:1.5rem 0 0}
-@media (min-width:980px){.final-grid{grid-template-columns:1fr minmax(0,500px);gap:4rem}}
-
-/* Retrato no celular */
-.retrato-mobile{display:grid;grid-template-columns:110px 1fr;gap:1rem;align-items:center;margin-top:1.75rem}
-.retrato-mobile .arco{aspect-ratio:3/4;box-shadow:var(--sombra-leve)}
-.retrato-mobile p{font-size:1rem;color:var(--tinta-2);margin:0}
-.retrato-mobile strong{color:var(--tinta)}
 
 /* Seções */
 section{position:relative}
 .secao{padding:clamp(3.5rem,8vw,6.5rem) 0}
-.fundo-lilas{background:var(--lilas);color:var(--tinta)}
-.fundo-lilas.secao,.fundo-cha.secao{padding-bottom:clamp(2.5rem,5vw,4rem)}
+.fundo-lilas{background:var(--lilas)}
 .fundo-nuvem{background:var(--nuvem)}
 .fundo-cha{background:var(--cha)}
-.onda-lilas{color:var(--lilas)}
-.onda-nuvem{color:var(--nuvem)}
-.onda-cha{color:var(--cha)}
-.onda-branco{color:var(--branco)}
-.colado{margin-top:-1px;margin-bottom:-1px}
+.cabeca{display:grid;gap:.85rem;margin-bottom:2.5rem;max-width:62ch}
+.cabeca p{color:var(--tinta-2);margin:0}
+.cabeca-linha{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:2rem}
+.pe-secao{margin-top:2.5rem;display:flex;justify-content:center}
 
-/* Abertura */
-.abertura{display:grid;gap:2rem;align-items:start}
-.abertura .grande{font-family:var(--serif);font-size:clamp(1.65rem,1.3rem + 1.5vw,2.4rem);line-height:1.25;color:var(--tinta);margin:0 0 1.25rem}
-.abertura .grande em{font-style:normal;color:var(--roxo)}
-@media (min-width:900px){.abertura{grid-template-columns:1fr 1fr;gap:4rem}}
+/* Sobre */
+.sobre{display:grid;gap:2.5rem;align-items:center}
+.sobre-foto{position:relative;width:min(100%,400px);justify-self:center}
+.sobre-foto .ramo-sobre{position:absolute;right:-30px;top:24px;width:110px;transform:scaleX(-1);z-index:2}
+#sobre{overflow:hidden}
+.sobre-texto h2{margin-bottom:1.25rem}
+.sobre-texto p{color:var(--tinta-2)}
+.sobre-texto p.abre{font-family:var(--serif);font-size:clamp(1.35rem,1.15rem + .8vw,1.7rem);line-height:1.35;color:var(--tinta)}
+.sobre-nota{border:1.5px dashed var(--lavanda);border-radius:20px;padding:.85rem 1rem;font-size:.95rem;background:var(--nuvem)}
+.destaques{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.destaques li{display:flex;align-items:center;gap:.7rem;background:var(--nuvem);border-radius:22px;padding:.8rem .9rem;font-weight:700;font-size:.98rem;line-height:1.3;color:var(--tinta)}
+.destaques svg{width:32px;height:32px;flex:none}
+.destaques svg .ramo{stroke:var(--roxo-claro);stroke-width:1.6}
+.sobre-assina{font-family:var(--script);font-size:2.6rem;line-height:1;color:var(--roxo);margin:1.5rem 0 .25rem}
+.sobre-insta{font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;min-height:44px}
+.sobre-insta svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:420px){.destaques{grid-template-columns:1fr}}
+@media (min-width:900px){.sobre{grid-template-columns:.85fr 1.15fr;gap:5rem}}
 
-/* Dor */
-.dor-lista{list-style:none;margin:1.75rem 0 0;padding:0;display:grid;gap:.85rem}
-.dor-lista li{position:relative;padding:1rem 1.15rem 1rem 3.4rem;background:var(--branco);border-radius:22px;box-shadow:var(--sombra-leve)}
-.dor-lista li svg{position:absolute;left:.9rem;top:1rem;width:30px;height:30px}
-.dor-lista li svg .ramo,.beneficios svg .ramo,.compromisso svg .ramo,.grupo header svg .ramo,.hero-fatos svg .ramo,.marca svg .ramo,.agenda svg .ramo{stroke:var(--roxo-claro);stroke-width:1.6}
-.dor-fecho{margin:1.75rem 0 0;font-family:var(--serif);font-size:clamp(1.3rem,1.1rem + .8vw,1.65rem);color:var(--roxo-escuro)}
-@media (min-width:760px){.dor-lista{grid-template-columns:1fr 1fr;gap:1rem 1.25rem}}
-
-/* Solução: passos */
-.passos{list-style:none;margin:2.25rem 0 0;padding:0;display:grid;gap:1.25rem;counter-reset:passo}
-.passos li{counter-increment:passo;position:relative;padding-left:4.25rem}
-.passos li::before{content:counter(passo);position:absolute;left:0;top:-.1rem;width:3rem;height:3rem;border-radius:50%;display:grid;place-items:center;background:var(--lilas);color:var(--roxo-escuro);font-family:var(--serif);font-size:1.5rem}
-.passos li:not(:last-child)::after{content:"";position:absolute;left:1.5rem;top:3.3rem;bottom:-1.1rem;border-left:1.5px dashed var(--lavanda)}
-.passos h3{font-size:1.45rem;margin:.2rem 0 .35rem}
-.passos p{margin:0;color:var(--tinta-2)}
-.solucao-grid{display:grid;gap:2.5rem}
-.selo-lema{position:relative;align-self:start;border-radius:var(--raio-g);background:var(--nuvem);padding:2rem 1.75rem;text-align:center;overflow:hidden}
-.selo-lema .citacao{font-family:var(--serif);font-size:clamp(1.9rem,1.4rem + 2vw,2.7rem);line-height:1.15;color:var(--roxo);margin:0 0 .75rem}
-.selo-lema p{color:var(--tinta-2);margin:0;font-size:1.05rem}
-.selo-lema svg{width:120px;margin:0 auto 1rem}
-@media (min-width:900px){.solucao-grid{grid-template-columns:1.2fr .8fr;gap:4.5rem;align-items:center}.solucao-grid .selo-lema{align-self:center}}
-
-/* Cardápio de cuidados */
-.cardapio-intro{display:grid;gap:1rem;margin-bottom:2.5rem}
+/* Cuidados (cardápio) */
 .cardapio{display:grid;gap:1.5rem}
 .grupo{background:var(--branco);border-radius:var(--raio-g);padding:1.75rem 1.4rem 1.25rem;box-shadow:var(--sombra-leve)}
 .grupo header{display:flex;align-items:center;gap:.85rem;margin-bottom:.75rem}
 .grupo header svg{width:44px;height:44px;flex:none}
+.grupo header svg .ramo{stroke:var(--roxo-claro);stroke-width:1.6}
 .grupo h3{font-size:1.75rem}
 .grupo .desc{font-size:1rem;color:var(--tinta-2);margin:0 0 .5rem}
 .itens{list-style:none;margin:0;padding:0}
-.itens li{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 .6rem;padding:.8rem 0;border-bottom:1px solid var(--lilas)}
-.itens .nome-serv{flex:0 1 auto;min-width:0}
-.itens .l-curto{display:none}
-@media (max-width:559px){.itens li{flex-wrap:nowrap}.itens .nome-serv{font-size:1rem;flex:0 1 auto}.itens a{font-size:.95rem;gap:.25rem}.itens .l-longo{display:none}.itens .l-curto{display:inline}}
+.itens li{display:flex;align-items:baseline;gap:0 .6rem;padding:.8rem 0;border-bottom:1px solid var(--lilas)}
 .itens li:last-child{border-bottom:0}
-.itens .nome-serv{font-weight:700;font-size:1.0625rem}
+.itens .nome-serv{font-weight:700;font-size:1.0625rem;flex:0 1 auto;min-width:0}
 .itens .nome-serv small{display:block;font-weight:400;font-size:.88rem;color:var(--tinta-2)}
 .itens .pontos{flex:1;border-bottom:2px dotted var(--lilas-2);transform:translateY(-.3rem);min-width:1rem}
 .itens a{flex:none;font-weight:700;font-size:.95rem;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;min-height:44px;padding:0 .2rem}
 .itens a:hover{text-decoration:underline}
 .itens a svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--ease)}
 .itens a:hover svg{transform:translateX(3px)}
-.cardapio-cta{margin-top:2.5rem;text-align:center}
-.cardapio-cta p{color:var(--tinta-2)}
+.itens .l-curto{display:none}
+@media (max-width:559px){.itens .nome-serv{font-size:1rem}.itens .l-longo{display:none}.itens .l-curto{display:inline}}
 @media (min-width:980px){
   .cardapio{grid-template-columns:1.15fr 1fr;grid-template-rows:auto auto;gap:1.75rem}
   .grupo-facial{grid-row:span 2}
   .grupo{padding:2.25rem 2.25rem 1.5rem}
 }
 
-/* Benefícios */
-.beneficios{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:1.6rem}
-.beneficios li{display:grid;grid-template-columns:40px 1fr;gap:1rem;align-items:start}
-.beneficios svg{width:40px;height:40px}
-.beneficios strong{display:block;font-family:var(--serif);font-weight:400;font-size:1.4rem;line-height:1.2;margin-bottom:.25rem;color:var(--tinta)}
-.beneficios span{color:var(--tinta-2)}
-@media (min-width:820px){.beneficios{grid-template-columns:1fr 1fr;gap:2rem 3.5rem}}
-
-/* Prova: autoridade, antes/depois, depoimentos */
-.prova-grid{display:grid;gap:2.5rem}
-.autoridade{background:var(--branco);border-radius:var(--raio-g);padding:2rem 1.6rem;box-shadow:var(--sombra-leve);position:relative}
-.autoridade .destaques{list-style:none;padding:0;margin:1.25rem 0 0;display:flex;flex-wrap:wrap;gap:.5rem}
-.autoridade .destaques li{background:var(--lilas);border-radius:999px;padding:.4rem .95rem;font-weight:700;font-size:.95rem;color:var(--roxo-escuro)}
-.autoridade h2{font-size:clamp(1.75rem,1.4rem + 1vw,2.15rem)}
-.autoridade svg.selo{width:64px;height:64px;margin-bottom:1rem}
-
+/* Depoimentos + antes e depois */
+.carrossel-ctrl{display:flex;gap:.6rem}
+.carrossel-ctrl.parado{visibility:hidden}
+.carrossel-btn{width:52px;height:52px;border-radius:50%;border:0;background:var(--branco);box-shadow:var(--sombra-leve);display:grid;place-items:center;color:var(--roxo-escuro);cursor:pointer;transition:background-color .3s, transform .3s var(--ease)}
+.carrossel-btn:hover:not(:disabled){background:var(--lilas)}
+.carrossel-btn:active{transform:scale(.94)}
+.carrossel-btn:disabled{opacity:.35;cursor:default}
+.carrossel-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.trilho{list-style:none;margin:0;padding:.25rem .1rem 1rem;display:grid;grid-auto-flow:column;grid-auto-columns:88%;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.trilho::-webkit-scrollbar{display:none}
+.trilho > li{scroll-snap-align:start}
+@media (min-width:700px){.trilho{grid-auto-columns:calc((100% - 1rem)/2)}}
+@media (min-width:1100px){.trilho{grid-auto-columns:calc((100% - 2rem)/3)}}
+.depo{margin:0;height:100%;border-radius:var(--raio);border:1.5px dashed var(--lavanda);background:rgba(255,255,255,.7);padding:1.5rem 1.4rem;position:relative;display:flex;flex-direction:column}
+.depo blockquote{margin:0;flex:1}
+.depo .aspas{font-family:var(--serif);font-size:3.5rem;line-height:.6;color:var(--lavanda);display:block;height:1.6rem}
+.depo p{color:var(--tinta-2);font-style:italic;margin-bottom:.75rem}
+.depo .quem{font-size:.95rem;font-weight:700;color:var(--tinta)}
+.depo .pendente{position:absolute;top:1rem;right:1rem;font-size:.75rem;font-weight:800;color:var(--roxo-escuro);background:var(--lilas);border-radius:999px;padding:.2rem .6rem}
+.pontinhos{display:flex;justify-content:center;gap:.4rem;margin-top:.5rem}
+.pontinhos button{width:44px;height:44px;border:0;background:none;display:grid;place-items:center;cursor:pointer;padding:0}
+.pontinhos button::before{content:"";width:8px;height:8px;border-radius:999px;background:var(--lavanda);opacity:.5;transition:width .4s var(--ease), opacity .3s, background-color .3s}
+.pontinhos button[aria-current="true"]::before{width:26px;opacity:1;background:var(--roxo)}
+.antes-depois{display:grid;gap:2rem;align-items:center;margin-top:4rem}
+.antes-depois h3{font-size:clamp(1.6rem,1.3rem + 1vw,2.1rem);margin-bottom:.75rem}
+.antes-depois p{color:var(--tinta-2)}
+@media (min-width:900px){.antes-depois{grid-template-columns:.8fr 1.2fr;gap:4rem}}
 .comparador{position:relative;border-radius:var(--raio-g);overflow:hidden;aspect-ratio:4/3;background:var(--lilas-2);box-shadow:var(--sombra);user-select:none;--pos:50%}
 .comparador img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .comparador .depois{clip-path:inset(0 0 0 var(--pos))}
-.comparador .linha{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:#fff;transform:translateX(-1px);pointer-events:none;box-shadow:0 0 0 1px rgba(110,75,168,.15)}
+.comparador .linha{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:#fff;transform:translateX(-1px);pointer-events:none}
 .comparador .alca{position:absolute;top:50%;left:var(--pos);width:52px;height:52px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:var(--sombra);display:grid;place-items:center;pointer-events:none}
 .comparador .alca svg{width:26px;height:26px;stroke:var(--roxo);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .comparador input[type=range]{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;touch-action:pan-y}
 .comparador input[type=range]:focus-visible ~ .alca{outline:3px solid var(--roxo);outline-offset:3px}
 .comparador .tag{position:absolute;bottom:1rem;padding:.35rem .85rem;border-radius:999px;background:rgba(255,255,255,.92);font-weight:800;font-size:.85rem;color:var(--roxo-escuro);pointer-events:none}
 .comparador .tag-antes{left:1rem}
-.comparador .exemplo{position:absolute;top:1rem;left:50%;transform:translateX(-50%);padding:.3rem .8rem;border-radius:999px;background:rgba(255,255,255,.92);font-size:.82rem;font-weight:700;color:var(--tinta-2);pointer-events:none;white-space:nowrap}
 .comparador .tag-depois{right:1rem}
+.comparador .exemplo{position:absolute;top:1rem;left:50%;transform:translateX(-50%);padding:.3rem .8rem;border-radius:999px;background:rgba(255,255,255,.92);font-size:.82rem;font-weight:700;color:var(--tinta-2);pointer-events:none;white-space:nowrap}
 .aviso{font-size:.95rem;color:var(--tinta-2);margin:.85rem 0 0;display:flex;gap:.5rem;align-items:flex-start}
 .aviso svg{width:20px;height:20px;flex:none;margin-top:.2rem;stroke:var(--roxo);fill:none;stroke-width:1.8;stroke-linecap:round}
 
-.depoimentos{display:grid;gap:1.25rem;margin-top:3rem}
-.depo blockquote{margin:0}
-.depo{margin:0;border-radius:var(--raio);border:1.5px dashed var(--lavanda);background:rgba(255,255,255,.6);padding:1.5rem 1.4rem;position:relative}
-.depo .aspas{font-family:var(--serif);font-size:3.5rem;line-height:.6;color:var(--lavanda);display:block;height:1.6rem}
-.depo p{color:var(--tinta-2);font-style:italic;margin-bottom:.75rem}
-.depo .quem{font-size:.95rem;font-weight:700;color:var(--tinta)}
-.depo .pendente{position:absolute;top:1rem;right:1rem;font-size:.75rem;font-weight:800;color:var(--roxo-escuro);background:var(--lilas);border-radius:999px;padding:.2rem .6rem}
-@media (min-width:900px){
-  .prova-grid{grid-template-columns:.9fr 1.1fr;gap:3.5rem;align-items:center}
-  .depoimentos{grid-template-columns:repeat(3,1fr)}
-}
-
-/* Oferta / como funciona */
-.oferta-grid{display:grid;gap:2.5rem}
-.linha-tempo{list-style:none;margin:0;padding:0;display:grid;gap:0}
-.linha-tempo li{position:relative;padding:0 0 1.5rem 2.6rem}
-.linha-tempo li::before{content:"";position:absolute;left:.45rem;top:.45rem;width:14px;height:14px;border-radius:50%;background:var(--branco);border:3px solid var(--roxo-claro)}
-.linha-tempo li:not(:last-child)::after{content:"";position:absolute;left:calc(.45rem + 6px);top:1.4rem;bottom:.2rem;width:2px;background:var(--lilas-2)}
-.linha-tempo strong{display:block;font-size:1.1rem}
-.linha-tempo span{color:var(--tinta-2)}
-.investimento{background:var(--branco);border-radius:var(--raio-g);padding:2rem 1.6rem;box-shadow:var(--sombra)}
-.investimento h3{margin-bottom:.75rem}
-.investimento dl{margin:1.25rem 0;display:grid;gap:.9rem}
-.investimento dt{font-weight:800;font-size:.95rem;color:var(--roxo-escuro)}
-.investimento dd{margin:0;color:var(--tinta-2)}
-.pend{display:inline-block;background:var(--cha);border-radius:8px;padding:0 .4rem;font-size:.92em;color:var(--tinta)}
-.custo{border-top:1px solid var(--lilas);padding-top:1.25rem;margin-top:1.25rem;font-size:1rem;color:var(--tinta-2)}
-@media (min-width:900px){.oferta-grid{grid-template-columns:1fr 1fr;gap:4rem;align-items:start}}
-
-/* Objeções */
-.objecoes{display:grid;gap:1.25rem;margin-top:2rem}
-.obj{background:var(--branco);border-radius:var(--raio);padding:1.5rem 1.4rem;box-shadow:var(--sombra-leve)}
-.obj h3{font-size:1.45rem;margin-bottom:.5rem;color:var(--roxo-escuro)}
-.obj p{margin:0;color:var(--tinta-2)}
-.obj-cta{margin-top:2.5rem;display:flex;flex-direction:column;align-items:center;text-align:center}
-.obj-cta .micro{justify-content:center}
-@media (min-width:820px){.objecoes{grid-template-columns:repeat(2,1fr)}.obj:last-child{grid-column:1/-1;max-width:calc(50% - .625rem);justify-self:center}}
-
-/* Compromisso */
-.compromisso{display:grid;gap:2rem;align-items:center}
-.compromisso ul{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
-.compromisso li{display:grid;grid-template-columns:28px 1fr;gap:.85rem}
-.compromisso li svg{width:28px;height:28px;margin-top:.15rem}
-.compromisso li strong{color:var(--tinta)}
-.compromisso li span{color:var(--tinta-2)}
-.agenda{margin-top:2.5rem;border-radius:var(--raio-g);background:var(--lilas);padding:1.75rem 1.5rem;display:flex;gap:1rem;align-items:flex-start}
-.agenda svg{width:40px;height:40px;flex:none}
-.agenda p{margin:0}
-@media (min-width:900px){.compromisso{grid-template-columns:.9fr 1.1fr;gap:4rem}}
-
-/* FAQ */
-.faq{max-width:820px;margin:2rem auto 0}
+/* Dúvidas */
+.faq{max-width:820px;margin:0 auto}
 .faq details{border-bottom:1px solid var(--lilas-2)}
 .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.25rem .25rem;font-weight:700;font-size:1.125rem;min-height:56px}
 .faq summary::-webkit-details-marker{display:none}
@@ -386,44 +283,77 @@ section{position:relative}
 .faq summary:hover{color:var(--roxo)}
 .faq .resp{padding:0 .25rem 1.4rem;color:var(--tinta-2);max-width:68ch}
 .faq .resp p:last-child{margin:0}
+.pend{display:inline-block;background:var(--cha);border-radius:8px;padding:0 .4rem;font-size:.92em;color:var(--tinta)}
 
-/* CTA final */
-.final{position:relative;overflow:hidden}
-.final h2{font-size:clamp(2.2rem,1.5rem + 3vw,3.6rem);max-width:18ch;margin-inline:auto}
-.final .medida{margin:0 auto 2rem;color:var(--tinta-2)}
-.final .micro{justify-content:center}
-.final .ramo-final{position:absolute;width:200px;opacity:.85;pointer-events:none}
-@media (max-width:899px){.final .rf-e{display:none}.final .rf-d{width:130px;bottom:-10px;right:-40px}}
-.final .rf-e{left:-30px;top:30px}
-.final .rf-d{right:-30px;bottom:20px;transform:scaleX(-1)}
-.ps{margin:3rem auto 0;max-width:62ch;text-align:left;background:var(--branco);border-radius:var(--raio);padding:1.5rem 1.5rem;box-shadow:var(--sombra-leve);font-size:1.05rem}
-.ps strong{font-family:var(--serif);font-weight:400;font-size:1.35rem;color:var(--roxo);margin-right:.25rem}
+/* Chamada final com o bilhete */
+.chamada{position:relative;overflow:hidden}
+.chamada-grid{display:grid;gap:2.5rem;align-items:center}
+.chamada h2{font-size:clamp(2.2rem,1.5rem + 3vw,3.6rem);margin-bottom:1rem}
+.chamada .texto p{color:var(--tinta-2);max-width:46ch}
+.chamada .ramo-final{position:absolute;width:190px;opacity:.85;pointer-events:none;left:-40px;top:20px}
+@media (max-width:979px){.chamada .ramo-final{display:none}}
+@media (min-width:980px){.chamada-grid{grid-template-columns:1fr minmax(0,500px);gap:4rem}}
+.bilhete{position:relative;z-index:3;background:var(--branco);border-radius:var(--raio-g);box-shadow:var(--sombra);padding:1.5rem 1.25rem 1.4rem;border:1px solid var(--lilas)}
+.bilhete h2{font-size:1.6rem;margin:0 0 .3rem}
+.bilhete .instr{font-size:1rem;color:var(--tinta-2);margin:0 0 1rem}
+.bilhete fieldset{border:0;padding:0;margin:0 0 1.1rem;min-width:0}
+.bilhete legend{font-weight:700;font-size:1rem;margin-bottom:.6rem;padding:0}
+.chips{display:flex;flex-wrap:wrap;gap:.55rem}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.chip span{display:inline-flex;align-items:center;gap:.45rem;min-height:46px;padding:.55rem 1rem;border-radius:999px;background:var(--nuvem);border:1.5px solid var(--lilas-2);font-size:1rem;font-weight:600;color:var(--tinta);transition:background-color .3s, border-color .3s, color .3s}
+.chip span svg{stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:0;margin-left:-.3rem;width:0;height:16px;transition:opacity .3s, width .3s var(--ease), margin .3s}
+.chip input:hover + span{border-color:var(--lavanda)}
+.chip input:checked + span{background:var(--lilas);border-color:var(--roxo-claro);color:var(--roxo-escuro)}
+.chip input:checked + span svg{opacity:1;width:16px;margin-left:0}
+.chip input:focus-visible + span{outline:3px solid var(--roxo);outline-offset:2px}
+.local{display:grid;grid-template-columns:1fr 1fr;background:var(--branco);border:1.5px solid var(--lilas-2);border-radius:999px;padding:4px}
+.local label{position:relative;text-align:center;cursor:pointer}
+.local input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.local span{display:flex;align-items:center;justify-content:center;min-height:46px;padding:.4rem .5rem;border-radius:999px;font-weight:700;font-size:.98rem;color:var(--tinta-2);transition:background-color .35s var(--ease), color .3s, box-shadow .35s}
+.local span svg{width:0;height:16px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .3s,width .3s var(--ease),margin .3s}
+.local input:checked + span{background:var(--lilas);color:var(--roxo-escuro);box-shadow:inset 0 0 0 2px var(--roxo)}
+.local input:checked + span svg{width:16px;opacity:1;margin-right:.35rem}
+.local input:focus-visible + span{outline:3px solid var(--roxo);outline-offset:1px}
+.balao{background:var(--lilas);border-radius:22px 22px 22px 6px;padding:.9rem 1.05rem;margin:0 0 1.15rem;font-size:1rem;line-height:1.5}
+.balao small{display:block;font-size:.8rem;font-weight:700;color:var(--roxo-escuro);margin-bottom:.25rem}
+.balao p{margin:0}
+.bilhete .btn{width:100%}
+.bilhete .micro{justify-content:center}
+@media (min-width:640px){.bilhete{padding:2rem 2rem 1.75rem}}
 
-/* Rodapé */
-.rodape{background:var(--lilas);color:var(--tinta);padding:2.5rem 0 6.5rem;font-size:1rem}
-.rodape a{color:var(--roxo-escuro)}
-.rodape a:hover{color:var(--tinta)}
-.rodape-grid{display:grid;gap:2rem}
-.rodape h2{font-family:var(--sans);font-weight:800;font-size:1rem;color:var(--tinta);margin:0 0 .6rem}
-.rodape ul{list-style:none;padding:0;margin:0;display:grid;gap:.4rem}
-.rodape .legal{border-top:1px solid var(--lilas-2);margin-top:2.5rem;padding-top:1.5rem;font-size:.92rem;color:var(--tinta-2)}
-@media (min-width:820px){.rodape-grid{grid-template-columns:1.3fr 1fr 1fr}}
+/* Contato (rodapé) */
+.rodape{background:var(--lilas);padding:3rem 0 6.5rem}
+.rodape-grid{display:grid;gap:2.5rem}
+.rodape .marca{margin-bottom:1.5rem}
+.contatos{margin:0;display:grid;gap:1.1rem}
+.contatos div{display:grid;grid-template-columns:40px 1fr;grid-template-areas:"ic dt" "ic dd";column-gap:.85rem;row-gap:.1rem;align-items:start}
+.contatos .ic{grid-area:ic}.contatos dt{grid-area:dt;align-self:end}.contatos dd{grid-area:dd}
+.contatos .ic{width:40px;height:40px;border-radius:50%;background:var(--branco);display:grid;place-items:center}
+.contatos .ic svg{width:20px;height:20px;stroke:var(--roxo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.contatos dt{font-weight:800;font-size:.95rem;color:var(--tinta)}
+.contatos dd{margin:0;color:var(--tinta-2)}
+.contatos a{color:var(--roxo-escuro);font-weight:700}
+.mapa{border-radius:var(--raio-g);overflow:hidden;background:var(--lilas-2);aspect-ratio:4/3;box-shadow:var(--sombra-leve)}
+.mapa iframe{width:100%;height:100%;border:0;display:block}
+.mapa-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:.85rem;font-weight:700;min-height:44px;text-decoration:none}
+.mapa-link svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.legal{border-top:1px solid var(--lilas-2);margin-top:2.5rem;padding-top:1.5rem;font-size:.92rem;color:var(--tinta-2);display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 2rem}
+.legal p{margin:0}
+@media (min-width:860px){.rodape-grid{grid-template-columns:1fr 1fr;gap:4rem;align-items:start}}
 
 /* WhatsApp flutuante */
-.flutuante{position:fixed;right:max(1rem, env(safe-area-inset-right));bottom:max(1rem, env(safe-area-inset-bottom));z-index:50;display:inline-flex;align-items:center;gap:.6rem;min-height:60px;padding:0 1.1rem 0 1rem;border-radius:999px;background:var(--roxo);color:#fff;text-decoration:none;font-weight:800;box-shadow:0 16px 32px -12px rgba(70,44,120,.6);transition:transform .5s var(--ease), background-color .3s}
-.flutuante.recolhido{opacity:0;transform:translateY(16px) scale(.9);pointer-events:none}
-.flutuante{transition:transform .5s var(--ease), opacity .4s var(--ease), background-color .3s}
+.flutuante{position:fixed;right:max(1rem, env(safe-area-inset-right));bottom:max(1rem, env(safe-area-inset-bottom));z-index:50;display:inline-flex;align-items:center;gap:.6rem;min-height:60px;padding:0 1.1rem 0 1rem;border-radius:999px;background:var(--roxo);color:#fff;text-decoration:none;font-weight:800;box-shadow:0 16px 32px -12px rgba(70,44,120,.6);transition:transform .5s var(--ease), opacity .4s var(--ease), background-color .3s}
 .flutuante:hover{background:var(--roxo-escuro);color:#fff;transform:translateY(-3px)}
+.flutuante.recolhido{opacity:0;transform:translateY(16px) scale(.9);pointer-events:none}
 .flutuante svg{width:28px;height:28px}
-.flutuante .rot{font-size:1rem}
 @media (max-width:520px){.flutuante{width:60px;padding:0;justify-content:center}.flutuante .rot{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
 
-/* Revelação suave (só com JS e sem reduced-motion) */
-.anima .rv{opacity:0;transform:translateY(18px);filter:blur(4px);transition:opacity 1s var(--ease), transform 1.1s var(--ease), filter 1s var(--ease)}
+/* Movimento */
+.anima .rv{opacity:0;transform:translateY(18px);filter:blur(4px);transition:opacity 1s var(--ease) var(--atraso,0ms), transform 1.1s var(--ease) var(--atraso,0ms), filter 1s var(--ease) var(--atraso,0ms)}
 .anima .rv.visto{opacity:1;transform:none;filter:none}
-.traco{stroke-dasharray:var(--len,600);stroke-dashoffset:0}
-.anima .traco{animation:desenha 2.6s var(--ease) .3s both}
-@keyframes desenha{from{stroke-dashoffset:var(--len,600)}to{stroke-dashoffset:0}}
+.anima .grifo path{stroke-dasharray:1;stroke-dashoffset:1;animation:grifa 1.6s var(--ease) .5s forwards}
+@keyframes grifa{to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -433,7 +363,6 @@ section{position:relative}
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
-<!-- Ícones reutilizáveis -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="i-whats" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></symbol>
@@ -449,100 +378,48 @@ section{position:relative}
   </defs>
 </svg>
 
-<header class="topo">
+<header class="topo" id="topo">
   <div class="wrap">
-    <a class="marca" href="#inicio" aria-label="Flávia Lima, início">
+    <a class="marca" href="#inicio" aria-label="Flávia Lima, voltar ao início">
       <svg aria-hidden="true"><use href="#i-folha"/></svg>
       <span class="txt"><span class="nome">Flávia Lima</span><span class="ofic">Estética &amp; Massoterapia</span></span>
     </a>
-    <nav aria-label="Principal">
-      <a href="#sobre">Sobre</a>
-      <a href="#cuidados">Cuidados</a>
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#duvidas">Dúvidas</a>
+    <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu"><span></span><span></span></button>
+    <nav class="menu" id="menu" aria-label="Menu principal">
+      <a class="link" href="#sobre">Sobre</a>
+      <a class="link" href="#cuidados">Cuidados</a>
+      <a class="link" href="#depoimentos">Depoimentos</a>
+      <a class="link" href="#duvidas">Dúvidas</a>
+      <a class="link" href="#contato">Contato</a>
+      <a class="btn btn-primario js-wa" data-cta="topo" href="https://api.whatsapp.com/send?phone=5581994951191&amp;text=Ol%C3%A1%2C%20Fl%C3%A1via!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio."><svg aria-hidden="true"><use href="#i-whats"/></svg>Agendar</a>
     </nav>
-    <a class="btn btn-primario js-wa" data-cta="topo" href="https://api.whatsapp.com/send?phone=5581994951191&amp;text=Ol%C3%A1%2C%20Fl%C3%A1via!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio.">
-      <svg aria-hidden="true"><use href="#i-whats"/></svg><span>Agendar</span>
-    </a>
   </div>
 </header>
 
 <main id="conteudo">
 
-<!-- 1–4: Hero -->
+<!-- HERO -->
 <section class="hero" id="inicio" aria-labelledby="titulo-hero">
   <div class="wrap hero-grid">
-    <div class="hero-texto">
-      <svg class="hero-ramo" viewBox="0 0 220 260" aria-hidden="true">
-        <g class="ramo">
-          <path class="traco" style="--len:420" d="M30 250C60 190 90 130 150 70 170 50 190 30 205 12"/>
-          <path class="traco" style="--len:120" d="M70 185c-25-5-40-25-42-48 22 3 38 22 42 48Z"/>
-          <path class="traco" style="--len:120" d="M95 150c20-14 44-14 62-2-17 15-42 16-62 2Z"/>
-          <path class="traco" style="--len:120" d="M118 112c-20-10-28-32-24-54 20 8 30 30 24 54Z"/>
-          <path class="traco" style="--len:120" d="M150 72c18-10 40-6 54 8-18 10-40 8-54-8Z"/>
-          <path class="traco" style="--len:80" d="M176 40c-8-12-6-28 4-38 8 12 6 28-4 38Z"/>
-        </g>
-      </svg>
+    <div>
       <span class="assinatura" aria-hidden="true">Flávia Lima</span>
-      <h1 id="titulo-hero">Trate sua dor, <em>sem dor.</em></h1>
-      <p class="sub">Estética facial, massoterapia e drenagem com a Flávia Lima, em Recife. Com hora marcada, no espaço ou na sua casa.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primario js-wa" data-cta="hero" href="https://api.whatsapp.com/send?phone=5581994951191&amp;text=Ol%C3%A1%2C%20Fl%C3%A1via!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whats"/></svg>Agendar pelo WhatsApp</a>
-        <p class="micro"><span>Hora marcada</span><span>No espaço ou em domicílio</span><span>Sem compromisso</span></p>
-      </div>
-      <ul class="hero-fatos" aria-label="Diferenciais">
-        <li><svg aria-hidden="true"><use href="#i-calendario"/></svg>Hora marcada</li>
-        <li><svg aria-hidden="true"><use href="#i-casa"/></svg>Atendimento em domicílio</li>
-        <li><svg aria-hidden="true"><use href="#i-mao"/></svg>Pele e corpo, mesmas mãos</li>
-      </ul>
-
-      <div class="so-mobile" style="margin-top:2rem">
-        <div class="retrato-mobile">
-          <div class="arco"><img src="img/flavia-placeholder.svg" width="400" height="533" alt="Espaço reservado para a foto da Flávia Lima de jaleco branco" loading="lazy" decoding="async"><span class="marcador">foto em breve</span></div>
-          <p><strong>Flávia Lima</strong>, esteticista e massoterapeuta. Uma só profissional para cuidar da sua pele e do seu corpo. <a href="#sobre">Conheça a Flávia</a></p>
-        </div>
+      <h1 id="titulo-hero"><span class="linha">Trate sua dor,</span> <span class="grifo">sem dor.<svg viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 10 C 80 28, 210 28, 296 8"/></svg></span></h1>
+      <p class="credenciais"><span>Esteticista</span><span class="ponto" aria-hidden="true"></span><span>Massoterapeuta</span><span class="ponto" aria-hidden="true"></span><span>Recife/PE</span></p>
+      <p class="sub">Estética facial, massoterapia e drenagem com hora marcada, no espaço Viver Bem ou na sua casa.</p>
+      <div class="hero-acoes">
+        <a class="btn btn-primario js-wa" data-cta="hero" href="https://api.whatsapp.com/send?phone=5581994951191&amp;text=Ol%C3%A1%2C%20Fl%C3%A1via!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio."><svg aria-hidden="true"><use href="#i-whats"/></svg>Agendar pelo WhatsApp</a>
+        <a class="btn btn-contorno" href="#cuidados">Conheça os cuidados</a>
       </div>
     </div>
-
-    <div class="retrato">
+    <div class="hero-midia">
+      <svg class="bolha" viewBox="0 0 600 600" preserveAspectRatio="none" aria-hidden="true"><path d="M432 78c68 40 122 112 128 196 6 86-38 170-104 226-66 58-156 86-236 62-82-24-152-102-170-188-18-84 16-176 78-236 62-60 152-90 226-82 30 4 56 10 78 22z"/></svg>
       <div class="arco"><img src="img/flavia-placeholder.svg" width="400" height="533" alt="Espaço reservado para a foto da Flávia Lima de jaleco branco" fetchpriority="high" decoding="async"><span class="marcador">foto em breve</span></div>
-      <svg class="ramo-arco" viewBox="0 0 140 200" aria-hidden="true"><g class="ramo"><path d="M120 196C100 140 80 90 30 20"/><path d="M98 140c-22 2-40-10-48-30 22-2 40 10 48 30Z"/><path d="M78 100c18-10 40-6 52 8-18 10-40 6-52-8Z"/><path d="M58 66c-20-2-34-16-38-34 20 2 34 16 38 34Z"/><circle cx="30" cy="18" r="5"/></g></svg>
+      <svg class="ramo-hero" viewBox="0 0 140 200" aria-hidden="true"><g class="ramo"><path d="M120 196C100 140 80 90 30 20"/><path d="M98 140c-22 2-40-10-48-30 22-2 40 10 48 30Z"/><path d="M78 100c18-10 40-6 52 8-18 10-40 6-52-8Z"/><path d="M58 66c-20-2-34-16-38-34 20 2 34 16 38 34Z"/><circle cx="30" cy="18" r="5"/></g></svg>
     </div>
   </div>
-
-
-  <svg class="onda onda-lilas colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60C180 20 360 10 560 38s420 52 620 22c110-16 190-36 260-30V90H0Z"/></svg>
 </section>
 
-<!-- 3 + 5: Abertura e dor -->
-<section class="secao fundo-lilas" aria-labelledby="titulo-dor">
-  <div class="wrap">
-    <div class="abertura">
-      <div class="rv">
-        <p class="grande">Você cuida de todo mundo. Do trabalho, da casa, da família. E o seu corpo vai guardando a conta: <em>o ombro que pesa, a pele que pede atenção.</em></p>
-      </div>
-      <div class="rv">
-        <p>Aqui você não é mais uma na fila de uma clínica apressada. É a Flávia quem te recebe, escuta o que você sente e monta o cuidado para o seu caso.</p>
-        <p>Um tratamento firme quando precisa, delicado sempre. Você sai mais leve, com a pele cuidada e com a sensação de que alguém olhou para você de verdade. 💜</p>
-      </div>
-    </div>
-
-    <h2 id="titulo-dor" class="rv" style="margin-top:3.5rem">Talvez seu corpo já esteja pedindo ajuda</h2>
-    <p class="medida rv">Algo na sua pele ou no seu corpo pede atenção há um tempo. E você vem empurrando.</p>
-    <ul class="dor-lista">
-      <li class="rv"><svg aria-hidden="true"><use href="#i-mao"/></svg>Aquela tensão no pescoço e nos ombros que não passa nem depois de dormir.</li>
-      <li class="rv"><svg aria-hidden="true"><use href="#i-gota"/></svg>As pernas pesadas e inchadas no fim do dia.</li>
-      <li class="rv"><svg aria-hidden="true"><use href="#i-flor"/></svg>Espinhas, manchas ou ressecamento que nenhum produto de farmácia resolveu.</li>
-      <li class="rv"><svg aria-hidden="true"><use href="#i-folha"/></svg>Olhar no espelho e notar que a pele perdeu o viço.</li>
-      <li class="rv"><svg aria-hidden="true"><use href="#i-calendario"/></svg>Querer se cuidar, mas não achar tempo nem para sair de casa.</li>
-      <li class="rv"><svg aria-hidden="true"><use href="#i-casa"/></svg>Já ter saído de uma clínica se sentindo só mais um número.</li>
-    </ul>
-    <p class="dor-fecho rv">Se você se viu em pelo menos uma dessas, esta página é para você.</p>
-  </div>
-</section>
-<svg class="onda onda-lilas colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="transform:scaleY(-1)"><path d="M0 50c240 40 480 40 720 10S1200 0 1440 40V90H0Z"/></svg>
-
-<!-- Sobre a Flávia -->
+<!-- SOBRE -->
 <section class="secao" id="sobre" aria-labelledby="titulo-sobre">
   <div class="wrap sobre">
     <div class="sobre-foto rv">
@@ -552,49 +429,29 @@ section{position:relative}
     <div class="sobre-texto">
       <h2 id="titulo-sobre" class="rv">Prazer, eu sou a Flávia</h2>
       <p class="abre rv">Sou esteticista e massoterapeuta, e atendo em Recife com hora marcada: no espaço Viver Bem ou na sua casa.</p>
-      <p class="rv">Para mim, massagem não é luxo. É saúde, é amor-próprio, é autocuidado. Por isso cada atendimento começa escutando você e segue no seu ritmo. Trate sua dor, sem dor.</p>
+      <p class="rv">Para mim, massagem não é luxo. É saúde, é amor-próprio, é autocuidado. Por isso cada atendimento começa escutando você, e a técnica é firme onde precisa e delicada sempre. Trate sua dor, sem dor.</p>
       <!-- [INSERIR] história da Flávia: como começou, formação, há quanto tempo atende -->
       <p class="sobre-nota rv">Espaço reservado para um pouco da história da Flávia: como começou, formação e há quanto tempo atende.</p>
-      <ul class="sobre-fatos rv">
-        <li><svg aria-hidden="true"><use href="#i-mao"/></svg>Esteticista e massoterapeuta</li>
-        <li><svg aria-hidden="true"><use href="#i-folha"/></svg>Congressista na Imersão Estética Erro Zero</li>
-        <li><svg aria-hidden="true"><use href="#i-casa"/></svg>Atende no espaço Viver Bem e em domicílio</li>
+      <ul class="destaques" role="list">
+        <li class="rv"><svg aria-hidden="true"><use href="#i-mao"/></svg>Estética e massoterapia</li>
+        <li class="rv"><svg aria-hidden="true"><use href="#i-folha"/></svg>Congressista Imersão Estética Erro Zero</li>
+        <li class="rv"><svg aria-hidden="true"><use href="#i-casa"/></svg>Atendimento em domicílio</li>
+        <li class="rv"><svg aria-hidden="true"><use href="#i-calendario"/></svg>Hora marcada</li>
       </ul>
       <p class="sobre-assina rv" aria-hidden="true">Flávia Lima</p>
       <a class="sobre-insta rv" href="https://www.instagram.com/estetica_limaflavia/" target="_blank" rel="noopener">Veja meu trabalho no Instagram<svg aria-hidden="true"><use href="#i-seta"/></svg></a>
     </div>
   </div>
 </section>
-<svg class="onda onda-nuvem colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50c240 40 480 40 720 10S1200 0 1440 40V90H0Z"/></svg>
-
-<!-- 6: Solução -->
-<section class="secao" id="como-funciona" aria-labelledby="titulo-solucao">
-  <div class="wrap solucao-grid">
-    <div>
-      <h2 id="titulo-solucao" class="rv">Cuidado sem dor, do jeito Flávia Lima</h2>
-      <p class="medida rv">A Flávia é esteticista e massoterapeuta. Pele e corpo são tratados juntos, pela mesma profissional, que entende o que um tem a ver com o outro.</p>
-      <ol class="passos">
-        <li class="rv"><h3>Escuta</h3><p>Você conta pelo WhatsApp o que sente e o que quer melhorar.</p></li>
-        <li class="rv"><h3>Plano</h3><p>A Flávia indica o tratamento que faz sentido para o seu caso. Nada de pacote empurrado.</p></li>
-        <li class="rv"><h3>Cuidado</h3><p>Você escolhe o horário e o lugar: no espaço Viver Bem ou na sua casa.</p></li>
-      </ol>
-    </div>
-    <aside class="selo-lema rv" aria-label="O lema do trabalho">
-      <svg viewBox="0 0 120 60" aria-hidden="true"><g class="ramo"><path d="M10 50c20-4 34-14 50-36 16 22 30 32 50 36"/><path d="M60 14v40M40 34c-8-2-13-8-14-16 8 1 13 7 14 16ZM80 34c8-2 13-8 14-16-8 1-13 7-14 16Z"/><circle cx="60" cy="10" r="4"/></g></svg>
-      <p class="citacao">Firme onde precisa. Delicado sempre.</p>
-      <p>É a regra que dá nome ao trabalho: trate sua dor, sem dor. O toque é sempre respeitoso, e o seu limite é quem manda.</p>
-    </aside>
-  </div>
-</section>
 <svg class="onda onda-nuvem colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40c200 40 420 50 700 20S1220 0 1440 30V90H0Z"/></svg>
 
-<!-- 6b: Cardápio de cuidados (serviços) -->
+<!-- CUIDADOS -->
 <section class="secao fundo-nuvem" id="cuidados" aria-labelledby="titulo-cuidados">
   <div class="wrap">
-    <div class="cardapio-intro">
-      <h2 id="titulo-cuidados" class="rv">Cardápio de cuidados</h2>
-      <p class="medida rv">Toque em “Quero saber mais” e a Flávia recebe sua mensagem já com o nome do tratamento.</p>
-    </div>
+    <header class="cabeca">
+      <h2 id="titulo-cuidados" class="rv">Como posso cuidar de você</h2>
+      <p class="rv">Cada cuidado começa com uma conversa: você conta o que sente, eu explico as opções e indico o que faz sentido para o seu caso. Toque em “Quero saber mais” e a mensagem já vai com o nome do tratamento.</p>
+    </header>
     <div class="cardapio">
       <article class="grupo grupo-facial rv" aria-labelledby="g-facial">
         <header><svg aria-hidden="true"><use href="#i-flor"/></svg><h3 id="g-facial">Facial</h3></header>
@@ -630,46 +487,37 @@ section{position:relative}
         </ul>
       </article>
     </div>
-    <div class="cardapio-cta rv">
-      <p>Não sabe qual escolher? A Flávia te orienta.</p>
-      <a class="btn btn-primario js-wa" data-cta="servicos" data-mensagem="Olá, Flávia! Vim pelo site e queria uma orientação sobre qual tratamento é melhor para mim." href="#">
-        <svg aria-hidden="true"><use href="#i-whats"/></svg>Quero uma orientação
-      </a>
+
+    <div class="pe-secao rv">
+      <a class="btn btn-contorno js-wa" data-cta="servicos" data-mensagem="Olá, Flávia! Vim pelo site e queria uma orientação sobre qual tratamento é melhor para mim." href="#"><svg aria-hidden="true"><use href="#i-whats"/></svg>Tire suas dúvidas pelo WhatsApp</a>
     </div>
   </div>
 </section>
 <svg class="onda onda-nuvem colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="transform:scaleY(-1)"><path d="M0 30c260 50 520 50 760 20s440-40 680-10V90H0Z"/></svg>
 
-<!-- 7: Benefícios -->
-<section class="secao" aria-labelledby="titulo-beneficios">
+<!-- DEPOIMENTOS + ANTES E DEPOIS -->
+<section class="secao" id="depoimentos" aria-labelledby="titulo-depo">
   <div class="wrap">
-    <h2 id="titulo-beneficios" class="rv">O que muda na sua semana</h2>
-    <ul class="beneficios">
-      <li class="rv"><svg aria-hidden="true"><use href="#i-mao"/></svg><div><strong>Alívio que você sente no corpo</strong><span>Menos tensão e mais leveza para o resto da semana.</span></div></li>
-      <li class="rv"><svg aria-hidden="true"><use href="#i-flor"/></svg><div><strong>Pele cuidada com indicação certa</strong><span>Você para de gastar com produto que não serve para a sua pele.</span></div></li>
-      <li class="rv"><svg aria-hidden="true"><use href="#i-calendario"/></svg><div><strong>Seu horário respeitado</strong><span>Hora marcada é hora sua, sem sala de espera lotada.</span></div></li>
-      <li class="rv"><svg aria-hidden="true"><use href="#i-casa"/></svg><div><strong>Cuidado sem sair de casa</strong><span>A Flávia leva o atendimento até você quando a rotina aperta.</span></div></li>
-      <li class="rv"><svg aria-hidden="true"><use href="#i-folha"/></svg><div><strong>Uma profissional que conhece sua história</strong><span>Você não precisa se explicar do zero a cada sessão.</span></div></li>
-      <li class="rv"><svg aria-hidden="true"><use href="#i-gota"/></svg><div><strong>Sem dor e sem pressa</strong><span>O tratamento acompanha o seu limite, não o relógio da clínica.</span></div></li>
-      <li class="rv"><svg aria-hidden="true"><use href="#i-cristal"/></svg><div><strong>Um momento só seu</strong><span>Você volta para a rotina se sentindo acolhida, não apenas atendida.</span></div></li>
-    </ul>
-  </div>
-</section>
-<svg class="onda onda-cha colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 55c220-35 470-45 720-15s500 40 720 5V90H0Z"/></svg>
+    <header class="cabeca-linha">
+      <h2 id="titulo-depo" class="rv">O que dizem as clientes</h2>
+      <div class="carrossel-ctrl rv">
+        <button class="carrossel-btn" type="button" data-ant aria-label="Depoimento anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="carrossel-btn" type="button" data-prox aria-label="Próximo depoimento"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </header>
+    <div class="rv" role="region" aria-roledescription="carrossel" aria-label="Depoimentos de clientes">
+      <ul class="trilho" role="list" tabindex="0">
+        <li aria-roledescription="slide" aria-label="1 de 3"><figure class="depo"><span class="pendente">Em breve</span><span class="aspas" aria-hidden="true">“</span><blockquote><p>Espaço reservado para o depoimento de uma cliente de massoterapia, contando como ficou a dor depois do atendimento.</p></blockquote><figcaption class="quem">[Nome da cliente] · massoterapia</figcaption></figure></li>
+        <li aria-roledescription="slide" aria-label="2 de 3"><figure class="depo"><span class="pendente">Em breve</span><span class="aspas" aria-hidden="true">“</span><blockquote><p>Espaço reservado para o depoimento de uma cliente de tratamento facial, contando o que mudou na pele.</p></blockquote><figcaption class="quem">[Nome da cliente] · tratamento facial</figcaption></figure></li>
+        <li aria-roledescription="slide" aria-label="3 de 3"><figure class="depo"><span class="pendente">Em breve</span><span class="aspas" aria-hidden="true">“</span><blockquote><p>Espaço reservado para o depoimento de uma cliente atendida em casa, contando sobre praticidade e segurança.</p></blockquote><figcaption class="quem">[Nome da cliente] · atendimento em domicílio</figcaption></figure></li>
+      </ul>
+    </div>
+    <div class="pontinhos" role="group" aria-label="Escolher depoimento"></div>
 
-<!-- 8: Prova -->
-<section class="secao fundo-cha" aria-labelledby="titulo-prova">
-  <div class="wrap">
-    <div class="prova-grid">
-      <div class="autoridade rv">
-        <svg class="selo" aria-hidden="true" viewBox="0 0 64 64"><g class="ramo" style="stroke:var(--roxo-claro)"><circle cx="32" cy="26" r="16"/><path d="M24 26l5 5 11-11"/><path d="M22 39l-5 19 15-7 15 7-5-19"/></g></svg>
-        <h2 id="titulo-prova">Sempre aprendendo, para cuidar melhor de você</h2>
-        <p>A Flávia investe em atualização constante. Participa de congressos de estética, como a Imersão Estética Erro Zero, para trazer técnicas seguras e atuais para o seu tratamento.</p>
-        <ul class="destaques" aria-label="Diferenciais">
-          <li>Atendimento em domicílio</li>
-          <li>Hora marcada</li>
-          <li>Estética + massoterapia</li>
-        </ul>
+    <div class="antes-depois">
+      <div class="rv">
+        <h3>Antes e depois</h3>
+        <p>Arraste para comparar. As fotos reais entram aqui, sempre com autorização das clientes.</p>
       </div>
       <div class="rv">
         <div class="comparador" id="comparador">
@@ -685,114 +533,41 @@ section{position:relative}
         <p class="aviso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg><span><strong>Resultados podem variar de pessoa para pessoa.</strong> Imagens ilustrativas até a publicação de fotos reais, com autorização das clientes.</span></p>
       </div>
     </div>
-
-    <div class="depoimentos">
-      <figure class="depo rv"><span class="pendente">Em breve</span><span class="aspas" aria-hidden="true">“</span><blockquote><p>Espaço reservado para o depoimento de uma cliente de massoterapia, contando como ficou a dor depois do atendimento.</p></blockquote><figcaption class="quem">[Nome da cliente] · massoterapia</figcaption></figure>
-      <figure class="depo rv"><span class="pendente">Em breve</span><span class="aspas" aria-hidden="true">“</span><blockquote><p>Espaço reservado para o depoimento de uma cliente de tratamento facial, contando o que mudou na pele.</p></blockquote><figcaption class="quem">[Nome da cliente] · tratamento facial</figcaption></figure>
-      <figure class="depo rv"><span class="pendente">Em breve</span><span class="aspas" aria-hidden="true">“</span><blockquote><p>Espaço reservado para o depoimento de uma cliente atendida em casa, contando sobre praticidade e segurança.</p></blockquote><figcaption class="quem">[Nome da cliente] · atendimento em domicílio</figcaption></figure>
-    </div>
-  </div>
-</section>
-<svg class="onda onda-cha colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="transform:scaleY(-1)"><path d="M0 40c300 45 560 40 800 12s420-30 640 0V90H0Z"/></svg>
-
-<!-- 9: Oferta / como funciona -->
-<section class="secao" aria-labelledby="titulo-oferta">
-  <div class="wrap oferta-grid">
-    <div>
-      <h2 id="titulo-oferta" class="rv">Como funciona o seu atendimento</h2>
-      <ol class="linha-tempo">
-        <li class="rv"><strong>Você chama no WhatsApp</strong><span>e conta o que está sentindo.</span></li>
-        <li class="rv"><strong>A Flávia faz uma avaliação inicial</strong><span>da sua necessidade pelo próprio WhatsApp e indica o tratamento.</span></li>
-        <li class="rv"><strong>Vocês combinam dia, hora e local</strong><span>no espaço Viver Bem ou na sua casa.</span></li>
-        <li class="rv"><strong>Você recebe o atendimento</strong><span>com tudo preparado e higienizado.</span></li>
-        <li class="rv"><strong>Você sai com orientações</strong><span>para manter o resultado em casa.</span></li>
-      </ol>
-    </div>
-    <div class="investimento rv">
-      <h3>Investimento</h3>
-      <p>Valores sob consulta no WhatsApp. Cada tratamento é indicado conforme o seu caso.</p>
-      <dl>
-        <div><dt>Formas de pagamento</dt><dd><span class="pend">[INSERIR]</span></dd></div>
-        <div><dt>Atendimento em domicílio</dt><dd>Regiões atendidas: <span class="pend">[INSERIR BAIRROS]</span></dd></div>
-      </dl>
-      <a class="btn btn-primario js-wa" data-cta="investimento" data-mensagem="Olá, Flávia! Vim pelo site e gostaria de saber os valores dos tratamentos." href="#"><svg aria-hidden="true"><use href="#i-whats"/></svg>Consultar valores</a>
-      <p class="custo">Dor que fica vira hábito de postura, de sono ruim, de mau humor. Pele sem o cuidado certo vira gasto com produto errado. Uma conversa no WhatsApp não custa nada.</p>
-    </div>
   </div>
 </section>
 <svg class="onda onda-lilas colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60C180 20 360 10 560 38s420 52 620 22c110-16 190-36 260-30V90H0Z"/></svg>
 
-<!-- 10: Objeções -->
-<section class="secao fundo-lilas" aria-labelledby="titulo-obj">
+<!-- DÚVIDAS -->
+<section class="secao fundo-lilas" id="duvidas" aria-labelledby="titulo-faq">
   <div class="wrap">
-    <h2 id="titulo-obj" class="rv">Talvez você esteja pensando…</h2>
-    <div class="objecoes">
-      <article class="obj rv"><h3>“Mas vai doer?”</h3><p>Não precisa doer para funcionar. É o lema do trabalho: trate sua dor, sem dor. A Flávia ajusta a pressão e a técnica ao que você suporta, e você pode pedir para parar ou suavizar a qualquer momento.</p></article>
-      <article class="obj rv"><h3>“Mas isso não é luxo?”</h3><p>Massagem não é luxo. É saúde, é amor-próprio, é autocuidado. E a avaliação inicial é pelo WhatsApp, sem compromisso: você só agenda quando entender o tratamento e o valor.</p></article>
-      <article class="obj rv"><h3>“Em casa é seguro e higiênico?”</h3><p>A Flávia leva os materiais preparados e higienizados e organiza o espaço antes de começar. Você recebe uma profissional, com jaleco e cuidado de clínica, no conforto da sua casa.</p></article>
-      <article class="obj rv"><h3>“Funciona para o meu caso?”</h3><p>Por isso existe a avaliação inicial. Antes de qualquer sessão, a Flávia entende o seu caso e só indica o que faz sentido para você. Se não for o tratamento certo, ela te diz.</p></article>
-      <article class="obj rv"><h3>“Eu não tenho tempo.”</h3><p>É para isso que existem a hora marcada e o atendimento em domicílio. Você escolhe o horário e não perde tempo com trânsito nem sala de espera.</p></article>
-    </div>
-    <div class="obj-cta rv">
-      <a class="btn btn-primario js-wa" data-cta="objecoes" href="#"><svg aria-hidden="true"><use href="#i-whats"/></svg>Tirar minha dúvida</a>
-      <p class="micro"><span>Avaliação inicial pelo WhatsApp</span><span>Sem compromisso</span></p>
+    <header class="cabeca" style="margin-inline:auto;text-align:center">
+      <h2 id="titulo-faq" class="rv">Dúvidas frequentes</h2>
+    </header>
+    <div class="faq">
+      <details class="rv"><summary>Vai doer?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>Não precisa doer para funcionar. É o lema do trabalho: trate sua dor, sem dor. A pressão e a técnica são ajustadas ao que você suporta, e você pode pedir para parar ou suavizar a qualquer momento.</p></div></details>
+      <details class="rv"><summary>Massagem e estética não são luxo?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>Massagem não é luxo. É saúde, é amor-próprio, é autocuidado. A avaliação inicial é pelo WhatsApp, sem compromisso: você só agenda quando entender o tratamento e o valor.</p></div></details>
+      <details class="rv"><summary>Quanto custa?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>Os valores são passados no WhatsApp, depois de entender o que você precisa. Assim você paga pelo tratamento certo, não por um pacote genérico.</p></div></details>
+      <details class="rv"><summary>Atendimento em casa é seguro e higiênico?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>Sim. A Flávia leva os materiais preparados e higienizados e organiza o espaço antes de começar. Você só precisa de um cantinho tranquilo. Regiões atendidas: <span class="pend">[INSERIR]</span>.</p></div></details>
+      <details class="rv"><summary>Serve para o meu tipo de pele ou o meu caso?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>Por isso existe a avaliação inicial. Antes de qualquer sessão, a Flávia entende o seu caso e só indica o que faz sentido para você. Se não for o tratamento certo, ela te diz.</p></div></details>
+      <details class="rv"><summary>Eu não tenho tempo. Dá para encaixar?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>É para isso que existem a hora marcada e o atendimento em domicílio. Você escolhe o horário e não perde tempo com trânsito nem sala de espera.</p></div></details>
+      <details class="rv"><summary>Em quanto tempo vejo resultado?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>Muitas pessoas sentem alívio já na primeira massagem. Na pele, o resultado depende do tratamento e do seu caso. A Flávia explica o que esperar na avaliação. Resultados podem variar.</p></div></details>
+      <details class="rv"><summary>Quais as formas de pagamento?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p><span class="pend">[INSERIR FORMAS DE PAGAMENTO]</span></p></div></details>
     </div>
   </div>
 </section>
 <svg class="onda onda-lilas colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="transform:scaleY(-1)"><path d="M0 50c240 40 480 40 720 10S1200 0 1440 40V90H0Z"/></svg>
 
-<!-- 11 + 12: Compromisso e agenda -->
-<section class="secao" aria-labelledby="titulo-comp">
-  <div class="wrap">
-    <div class="compromisso">
-      <div class="rv">
-        <h2 id="titulo-comp">O compromisso de cuidado da Flávia</h2>
-        <p class="medida" style="color:var(--tinta-2)">O que você pode esperar de cada atendimento, no espaço ou na sua casa.</p>
-      </div>
-      <ul>
-        <li class="rv"><svg aria-hidden="true"><use href="#i-folha"/></svg><div><strong>Avaliação antes de tudo.</strong> <span>Nenhum tratamento é feito sem entender o seu caso.</span></div></li>
-        <li class="rv"><svg aria-hidden="true"><use href="#i-flor"/></svg><div><strong>Indicação honesta.</strong> <span>Se o procedimento não for o ideal para você, ela fala. Sem pacote empurrado.</span></div></li>
-        <li class="rv"><svg aria-hidden="true"><use href="#i-mao"/></svg><div><strong>Seu limite manda.</strong> <span>A sessão se adapta ao seu conforto do começo ao fim.</span></div></li>
-        <li class="rv"><svg aria-hidden="true"><use href="#i-gota"/></svg><div><strong>Higiene de clínica, onde você estiver.</strong> <span>No espaço ou em domicílio.</span></div></li>
-        <li class="rv"><svg aria-hidden="true"><use href="#i-calendario"/></svg><div><strong>Acompanhamento depois.</strong> <span>Você sai com orientações e pode tirar dúvidas pelo WhatsApp.</span></div></li>
-      </ul>
+<!-- CHAMADA FINAL -->
+<section class="secao chamada" aria-labelledby="titulo-final">
+  <svg class="ramo-final" viewBox="0 0 200 200" aria-hidden="true"><g class="ramo"><path d="M10 190C60 140 110 80 190 20"/><path d="M60 140c-24 0-42-14-48-36 24 0 42 14 48 36ZM100 100c4-24 22-40 46-42-4 24-22 40-46 42ZM140 62c-20-6-32-22-32-42 20 6 32 22 32 42Z"/></g></svg>
+  <div class="wrap chamada-grid">
+    <div class="texto">
+      <h2 id="titulo-final" class="rv">Vamos cuidar de <span class="grifo">você?<svg viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 10 C 80 28, 210 28, 296 8"/></svg></span></h2>
+      <p class="rv">Imagine terminar a semana com o corpo leve, a pele cuidada e a sensação de que finalmente alguém cuidou de você. Esse momento começa com uma mensagem.</p>
+      <p class="rv">A agenda é com hora marcada, para que cada atendimento tenha o tempo que merece. 💜</p>
     </div>
-    <div class="agenda rv">
-      <svg aria-hidden="true"><use href="#i-calendario"/></svg>
-      <p>A agenda é com hora marcada, para que cada atendimento tenha o tempo que merece. <strong>Garanta o seu horário.</strong></p>
-    </div>
-  </div>
-</section>
-<svg class="onda onda-nuvem colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40c200 40 420 50 700 20S1220 0 1440 30V90H0Z"/></svg>
-
-<!-- 13: FAQ -->
-<section class="secao fundo-nuvem" id="duvidas" aria-labelledby="titulo-faq">
-  <div class="wrap">
-    <h2 id="titulo-faq" class="rv" style="text-align:center">Dúvidas frequentes</h2>
-    <div class="faq">
-      <details class="rv"><summary>Vai doer?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>Não. A técnica e a pressão são ajustadas ao seu conforto. O objetivo é tratar a dor, não causar outra.</p></div></details>
-      <details class="rv"><summary>Quanto custa?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>Os valores são passados no WhatsApp, depois de entender o que você precisa. Assim você paga pelo tratamento certo, não por um pacote genérico.</p></div></details>
-      <details class="rv"><summary>Como funciona o atendimento em domicílio?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>A Flávia vai até você com os materiais preparados e higienizados. Você só precisa de um espaço tranquilo. Regiões atendidas: <span class="pend">[INSERIR]</span>.</p></div></details>
-      <details class="rv"><summary>Serve para o meu tipo de pele ou o meu caso?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>A avaliação inicial pelo WhatsApp existe para isso. A Flávia só indica o tratamento depois de entender o seu caso.</p></div></details>
-      <details class="rv"><summary>Quanto tempo dura uma sessão?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>Depende do tratamento. A Flávia informa a duração no agendamento, para você se organizar.</p></div></details>
-      <details class="rv"><summary>Em quanto tempo vejo resultado?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>Muitas pessoas sentem alívio já na primeira massagem. Na pele, o resultado depende do tratamento e do seu caso. A Flávia explica o que esperar na avaliação. Resultados podem variar.</p></div></details>
-      <details class="rv"><summary>Quais as formas de pagamento?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p><span class="pend">[INSERIR FORMAS DE PAGAMENTO]</span></p></div></details>
-      <details class="rv"><summary>Onde fica o espaço?<span class="mais" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2v12M2 8h12"/></svg></span></summary><div class="resp"><p>No Viver Bem – Estética Facial e Corporal, em Recife. <span class="pend">[INSERIR ENDEREÇO OU BAIRRO]</span></p></div></details>
-    </div>
-  </div>
-</section>
-
-<!-- 14 + 15: CTA final e PS -->
-<section class="secao fundo-nuvem final" aria-labelledby="titulo-final" style="padding-top:2rem">
-  <svg class="ramo-final rf-e" viewBox="0 0 200 200" aria-hidden="true"><g class="ramo"><path d="M10 190C60 140 110 80 190 20"/><path d="M60 140c-24 0-42-14-48-36 24 0 42 14 48 36ZM100 100c4-24 22-40 46-42-4 24-22 40-46 42ZM140 62c-20-6-32-22-32-42 20 6 32 22 32 42Z"/></g></svg>
-  <svg class="ramo-final rf-d" viewBox="0 0 200 200" aria-hidden="true"><g class="ramo"><path d="M10 190C60 140 110 80 190 20"/><path d="M60 140c-24 0-42-14-48-36 24 0 42 14 48 36ZM100 100c4-24 22-40 46-42-4 24-22 40-46 42ZM140 62c-20-6-32-22-32-42 20 6 32 22 32 42Z"/></g></svg>
-  <div class="wrap final-grid">
-    <div>
-    <h2 id="titulo-final" class="rv">Imagine terminar a semana leve e cuidada</h2>
-    <p class="medida rv">Com o corpo leve, a pele cuidada e a sensação de que finalmente alguém cuidou de você. Esse momento começa com uma mensagem: conte para a Flávia o que você está sentindo, e ela te responde com carinho.</p>
-    <p class="ps rv"><strong>PS:</strong> Você não precisa escolher entre cuidar da pele, do corpo ou da sua agenda. Com a Flávia, é tudo com a mesma profissional, no seu horário, no espaço ou na sua casa. E sem dor. A agenda é com hora marcada: chama no WhatsApp e garanta o seu. 💜</p>
-    </div>
-  <form class="bilhete" id="bilhete" aria-labelledby="titulo-bilhete" action="https://api.whatsapp.com/send" method="get" target="_blank">
+    <div class="rv">
+      <form class="bilhete" id="bilhete" aria-labelledby="titulo-bilhete" action="https://api.whatsapp.com/send" method="get" target="_blank">
     <h2 id="titulo-bilhete">Conte para a Flávia</h2>
     <p class="instr">Marque o que você sente. A mensagem já sai escrita.</p>
     <fieldset>
@@ -823,39 +598,41 @@ section{position:relative}
     </a>
     <p class="micro"><span>Hora marcada</span><span>No espaço ou em domicílio</span><span>Sem compromisso</span></p>
   </form>
+    </div>
   </div>
 </section>
-<svg class="onda onda-lilas colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="background:var(--nuvem)"><path d="M0 60C180 20 360 10 560 38s420 52 620 22c110-16 190-36 260-30V90H0Z"/></svg>
-</main>
 
-<footer class="rodape">
+</main>
+<svg class="onda onda-lilas colado" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60C180 20 360 10 560 38s420 52 620 22c110-16 190-36 260-30V90H0Z"/></svg>
+
+<!-- CONTATO -->
+<footer class="rodape" id="contato" aria-labelledby="titulo-contato">
   <div class="wrap">
     <div class="rodape-grid">
       <div>
         <a class="marca" href="#inicio"><svg aria-hidden="true"><use href="#i-folha"/></svg><span class="txt"><span class="nome">Flávia Lima</span><span class="ofic">Esteticista e massoterapeuta · Recife/PE</span></span></a>
-        <p style="margin-top:1rem;max-width:36ch">Atendimento no espaço Viver Bem – Estética Facial e Corporal ou em domicílio, com hora marcada.</p>
+        <h2 id="titulo-contato" class="sr-only">Contato</h2>
+        <dl class="contatos">
+          <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg></span><dt>Onde</dt><dd>Espaço Viver Bem – Estética Facial e Corporal, Recife <span class="pend">[INSERIR ENDEREÇO]</span><br>ou na sua casa <span class="pend">[INSERIR BAIRROS]</span></dd></div>
+          <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><dt>Horário</dt><dd>Com hora marcada <span class="pend">[INSERIR DIAS E HORÁRIOS]</span></dd></div>
+          <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.2 19.8l1-3.7A8.3 8.3 0 1 1 8 19l-3.8.8Z"/></svg></span><dt>WhatsApp</dt><dd><a class="js-wa" data-cta="rodape" href="#">(81) 99495-1191</a> · <a href="https://api.whatsapp.com/send?phone=5581995947631&amp;text=Ol%C3%A1%2C%20Fl%C3%A1via!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">(81) 99594-7631</a></dd></div>
+          <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><path d="M17 7h.01"/></svg></span><dt>Instagram</dt><dd><a href="https://www.instagram.com/estetica_limaflavia/" target="_blank" rel="noopener">@estetica_limaflavia</a> · <a href="https://www.instagram.com/espacoviverbemoficial/" target="_blank" rel="noopener">@espacoviverbemoficial</a></dd></div>
+        </dl>
       </div>
       <div>
-        <h2>Fale com a Flávia</h2>
-        <ul>
-          <li><a class="js-wa" data-cta="rodape" href="#">WhatsApp (81) 99495-1191</a></li>
-          <li><a href="https://api.whatsapp.com/send?phone=5581995947631&amp;text=Ol%C3%A1%2C%20Fl%C3%A1via!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">WhatsApp (81) 99594-7631</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Instagram</h2>
-        <ul>
-          <li><a href="https://www.instagram.com/estetica_limaflavia/" target="_blank" rel="noopener">@estetica_limaflavia</a></li>
-          <li><a href="https://www.instagram.com/espacoviverbemoficial/" target="_blank" rel="noopener">@espacoviverbemoficial</a></li>
-        </ul>
+        <!--MAPA--><div class="mapa"><iframe title="Mapa com a região de atendimento em Recife" src="https://maps.google.com/maps?q=Recife%2C%20PE&amp;z=12&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><!--/MAPA-->
+        <a class="mapa-link" href="https://www.google.com/maps/search/?api=1&amp;query=Recife%2C%20PE" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>Abrir no Google Maps</a>
       </div>
     </div>
-    <p class="legal">© <span id="ano">2026</span> Flávia Lima · Estética e Massoterapia. Resultados de tratamentos estéticos podem variar de pessoa para pessoa. Este site não coleta dados pessoais; ao tocar em um botão, você é levada ao WhatsApp.</p>
+    <div class="legal">
+      <p>Flávia Lima · Esteticista e Massoterapeuta · Recife/PE</p>
+      <p>© <span id="ano">2026</span> · Resultados de tratamentos estéticos podem variar de pessoa para pessoa.</p>
+    </div>
   </div>
 </footer>
 
 <a class="flutuante js-wa" data-cta="flutuante" href="https://api.whatsapp.com/send?phone=5581994951191&amp;text=Ol%C3%A1%2C%20Fl%C3%A1via!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener" aria-label="Conversar com a Flávia no WhatsApp">
-  <svg aria-hidden="true"><use href="#i-whats"/></svg><span class="rot">WhatsApp</span>
+  <svg aria-hidden="true"><use href="#i-whats"/></svg><span class="rot">Agendar</span>
 </a>
 
 <script>
@@ -863,72 +640,113 @@ section{position:relative}
   var FONE = '5581994951191';
   var PADRAO = 'Olá, Flávia! Vim pelo site e gostaria de agendar um horário.';
   function link(msg){ return 'https://api.whatsapp.com/send?phone=' + FONE + '&text=' + encodeURIComponent(msg); }
+  var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Links de WhatsApp: mensagem padrão, por serviço ou personalizada
+  // Links de WhatsApp
   document.querySelectorAll('.js-wa').forEach(function(a){
     if (a.id === 'enviar') return;
     var serv = a.getAttribute('data-servico');
-    var msg = a.getAttribute('data-mensagem') ||
-      (serv ? 'Olá, Flávia! Vim pelo site e quero saber mais sobre ' + serv + '.' : PADRAO);
-    if (!a.href || a.getAttribute('href') === '#') a.href = link(msg);
+    var msg = a.getAttribute('data-mensagem') || (serv ? 'Olá, Flávia! Vim pelo site e quero saber mais sobre ' + serv + '.' : PADRAO);
+    if (!a.getAttribute('href') || a.getAttribute('href') === '#') a.href = link(msg);
     a.target = '_blank'; a.rel = 'noopener';
   });
-
-  // Medição de clique (Meta Pixel / GA4, se instalados)
   document.addEventListener('click', function(e){
-    var a = e.target.closest && e.target.closest('.js-wa');
-    if (!a) return;
-    var origem = a.getAttribute('data-cta') || 'servico';
-    var servico = a.getAttribute('data-servico') || '';
+    var a = e.target.closest && e.target.closest('.js-wa'); if (!a) return;
+    var origem = a.getAttribute('data-cta') || 'servico', servico = a.getAttribute('data-servico') || '';
     if (window.fbq) window.fbq('track', 'Lead', { content_name: servico || origem });
     if (window.gtag) window.gtag('event', 'generate_lead', { origem: origem, servico: servico });
   });
 
-  var bilhete = document.getElementById('bilhete');
+  // Cabeçalho e menu
+  var topo = document.getElementById('topo');
+  function rolar(){ topo.classList.toggle('rolou', window.scrollY > 12); }
+  rolar(); window.addEventListener('scroll', rolar, { passive: true });
+  var botao = document.querySelector('.menu-botao'), menu = document.getElementById('menu');
+  function abre(sim){
+    botao.setAttribute('aria-expanded', String(sim));
+    botao.setAttribute('aria-label', sim ? 'Fechar menu' : 'Abrir menu');
+    menu.classList.toggle('aberto', sim);
+    document.body.classList.toggle('menu-aberto', sim);
+  }
+  botao.addEventListener('click', function(){ abre(botao.getAttribute('aria-expanded') !== 'true'); });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ abre(false); }); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && menu.classList.contains('aberto')){ abre(false); botao.focus(); } });
+  window.matchMedia('(min-width: 900px)').addEventListener('change', function(){ abre(false); });
+
+  // Link ativo
+  var links = [].slice.call(document.querySelectorAll('.menu a.link'));
+  if ('IntersectionObserver' in window){
+    var espia = new IntersectionObserver(function(en){
+      en.forEach(function(x){ if (!x.isIntersecting) return; links.forEach(function(a){ a.classList.toggle('ativo', a.getAttribute('href') === '#' + x.target.id); }); });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    links.forEach(function(a){ var s = document.querySelector(a.getAttribute('href')); if (s) espia.observe(s); });
+  }
 
   // Bilhete: compõe a mensagem ao vivo
-  var previa = document.getElementById('previa');
-  var enviar = document.getElementById('enviar');
-  var oculto = document.getElementById('texto-wa');
-  function junta(lista){
-    if (lista.length < 2) return lista.join('');
-    return lista.slice(0, -1).join(', ') + ' e ' + lista[lista.length - 1];
-  }
+  var bilhete = document.getElementById('bilhete');
+  var previa = document.getElementById('previa'), enviar = document.getElementById('enviar'), oculto = document.getElementById('texto-wa');
+  function junta(l){ return l.length < 2 ? l.join('') : l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1]; }
   function compoe(){
-    var marcados = Array.prototype.map.call(bilhete.querySelectorAll('input[name=cuidar]:checked'), function(i){ return i.value; });
+    var marcados = [].map.call(bilhete.querySelectorAll('input[name=cuidar]:checked'), function(i){ return i.value; });
     var casa = bilhete.querySelector('input[name=local]:checked').value === 'casa';
     var msg = 'Olá, Flávia! Vim pelo site.';
     if (marcados.length) msg += ' Quero cuidar de: ' + junta(marcados) + '.';
     msg += casa ? ' Prefiro atendimento na minha casa.' : ' Prefiro atendimento no espaço.';
     msg += ' Pode me ajudar a agendar?';
-    previa.textContent = msg;
-    oculto.value = msg;
-    enviar.href = link(msg);
+    previa.textContent = msg; oculto.value = msg; enviar.href = link(msg);
   }
   bilhete.addEventListener('change', compoe);
-  bilhete.addEventListener('submit', function(e){ e.preventDefault(); window.open(enviar.href, '_blank', 'noopener'); });
+  bilhete.addEventListener('submit', function(e){ e.preventDefault(); enviar.click(); });
 
-  // Botão flutuante recolhe enquanto o bilhete está na tela (não cobre o formulário)
+  // Flutuante recolhe perto do bilhete
   var flut = document.querySelector('.flutuante');
-  if (flut && 'IntersectionObserver' in window){
+  if ('IntersectionObserver' in window){
     new IntersectionObserver(function(en){ flut.classList.toggle('recolhido', en[0].isIntersecting); }, { threshold: 0.15 }).observe(bilhete);
   }
 
-  // Comparador antes/depois
-  var comp = document.getElementById('comparador');
-  var faixa = document.getElementById('faixa');
+  // Carrossel
+  var trilho = document.querySelector('.trilho');
+  if (trilho){
+    var slides = [].slice.call(trilho.children);
+    var ant = document.querySelector('[data-ant]'), prox = document.querySelector('[data-prox]');
+    var pts = document.querySelector('.pontinhos');
+    var dots = slides.map(function(_, i){
+      var b = document.createElement('button'); b.type = 'button';
+      b.setAttribute('aria-label', 'Ir para o depoimento ' + (i + 1));
+      b.addEventListener('click', function(){ vai(i); }); pts.appendChild(b); return b;
+    });
+    function passo(){ return slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : trilho.clientWidth; }
+    function atual(){ return Math.round(trilho.scrollLeft / passo()); }
+    function vai(i){ i = Math.max(0, Math.min(slides.length - 1, i)); trilho.scrollTo({ left: i * passo(), behavior: calmo ? 'auto' : 'smooth' }); }
+    function atualiza(){
+      var max = trilho.scrollWidth - trilho.clientWidth - 2;
+      var idx = trilho.scrollLeft >= max ? slides.length - 1 : atual();
+      dots.forEach(function(d, i){ d.setAttribute('aria-current', i === idx ? 'true' : 'false'); });
+      var parado = trilho.scrollWidth <= trilho.clientWidth + 2;
+      ant.parentElement.classList.toggle('parado', parado);
+      pts.hidden = parado;
+      ant.disabled = trilho.scrollLeft <= 2; prox.disabled = trilho.scrollLeft >= max;
+    }
+    ant.addEventListener('click', function(){ vai(atual() - 1); });
+    prox.addEventListener('click', function(){ vai(atual() + 1); });
+    trilho.addEventListener('keydown', function(e){ if (e.key === 'ArrowRight'){ e.preventDefault(); vai(atual() + 1); } if (e.key === 'ArrowLeft'){ e.preventDefault(); vai(atual() - 1); } });
+    var raf = 0; trilho.addEventListener('scroll', function(){ cancelAnimationFrame(raf); raf = requestAnimationFrame(atualiza); }, { passive: true });
+    window.addEventListener('resize', atualiza); atualiza();
+  }
+
+  // Antes e depois
+  var comp = document.getElementById('comparador'), faixa = document.getElementById('faixa');
   function move(){ comp.style.setProperty('--pos', faixa.value + '%'); }
   faixa.addEventListener('input', move); move();
 
-  // Ano no rodapé
   var ano = document.getElementById('ano'); if (ano) ano.textContent = new Date().getFullYear();
 
-  // Revelação suave, respeitando prefers-reduced-motion
-  var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Revelação suave
   if (!calmo && 'IntersectionObserver' in window){
     document.documentElement.classList.add('anima');
-    var io = new IntersectionObserver(function(entradas){
-      entradas.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('visto'); io.unobserve(en.target); } });
+    document.querySelectorAll('.destaques, .cardapio').forEach(function(g){ [].forEach.call(g.children, function(c, i){ c.style.setProperty('--atraso', (i * 90) + 'ms'); }); });
+    var io = new IntersectionObserver(function(en){
+      en.forEach(function(x){ if (x.isIntersecting){ x.target.classList.add('visto'); io.unobserve(x.target); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
   }
